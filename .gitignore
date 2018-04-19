@@ -1,0 +1,28 @@
+
+# IDE
+.idea
+.vscode
+
+# mac
+.DS_Store
+
+# svn
+.svn
+
+# .bak
+*.bak
+
+# node | npm | yarn
+node_modules/
+npm-debug.log
+npm-lock.log
+package-lock.json
+yarn.lock
+
+# logs
+
+# download excel
+
+# general css
+
+# temp file
