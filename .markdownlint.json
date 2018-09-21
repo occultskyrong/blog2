@@ -1,6 +1,3 @@
 {
-    "editor.someSetting": true,
-    "markdownlint.config": {
-        "MD007": { "indent": 4 }
-    }
+    "MD007": { "indent": 4 }
 }
