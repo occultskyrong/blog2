@@ -1,0 +1,27 @@
+{
+  "name": "blog2",
+  "version": "1.0.0",
+  "description": "blog v2 for sky91",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/occultskyrong/blog2.git"
+  },
+  "author": "occultskyrong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/occultskyrong/blog2/issues"
+  },
+  "homepage": "https://github.com/occultskyrong/blog2#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

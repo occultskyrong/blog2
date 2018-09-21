@@ -38,6 +38,7 @@
 
 ## 1.3. 待整理
 
+- [ ] Git Shell命令缩短
 - [ ] JQuery源码阅读
 - [ ] JavaScript Set源码阅读
 - [ ] JavaScript Lodash Test Example

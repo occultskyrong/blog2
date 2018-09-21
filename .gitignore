@@ -13,10 +13,10 @@
 *.bak
 
 # node | npm | yarn
+node_modules
 code/node_modules/
 code/npm-debug.log
 code/npm-lock.log
-code/package-lock.json
 code/yarn.lock
 
 # logs
