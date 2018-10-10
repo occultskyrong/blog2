@@ -4,38 +4,55 @@
 
 <!-- TOC depthFrom:2 -->
 
-- [技术栈](#%E6%8A%80%E6%9C%AF%E6%A0%88)
-    - [1. 目录](#1-%E7%9B%AE%E5%BD%95)
-    - [2. 底层原理](#2-%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86)
-        - [2.1. 操作系统](#21-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
+- [技术栈](#技术栈)
+    - [1. 目录](#1-目录)
+    - [2. 底层原理](#2-底层原理)
+        - [2.1. 操作系统](#21-操作系统)
         - [2.2. Linux](#22-linux)
-            - [2.2.1. Linux下各文件夹功能](#221-linux%E4%B8%8B%E5%90%84%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8A%9F%E8%83%BD)
-            - [2.2.2. Shell命令](#222-shell%E5%91%BD%E4%BB%A4)
-        - [2.3. Http协议](#23-http%E5%8D%8F%E8%AE%AE)
+            - [2.2.1. Linux下各文件夹功能](#221-linux下各文件夹功能)
+            - [2.2.2. Shell命令](#222-shell命令)
+        - [2.3. Http协议](#23-http协议)
         - [2.4. JVM](#24-jvm)
-    - [3. 基础知识](#3-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86)
-        - [3.1. 数据处理](#31-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86)
+    - [3. 基础知识](#3-基础知识)
+        - [3.1. 数据处理](#31-数据处理)
             - [3.1.1. MapReduce](#311-mapreduce)
-    - [4. 工具](#4-%E5%B7%A5%E5%85%B7)
+    - [4. 工具](#4-工具)
         - [4.1. ZooKeeper](#41-zookeeper)
         - [4.2. Kafka](#42-kafka)
         - [4.3. Git](#43-git)
-            - [4.3.1. git commit](#431-git-commit)
-    - [5. 工程化](#5-%E5%B7%A5%E7%A8%8B%E5%8C%96)
+            - [4.3.1. 常用命令](#431-常用命令)
+    - [查询缓存区状态](#查询缓存区状态)
+    - [添加文件到缓存区](#添加文件到缓存区)
+            - [4.3.2. 不常用命令](#432-不常用命令)
+    - [查看提交日志](#查看提交日志)
+    - [查看命令历史](#查看命令历史)
+            - [4.3.3. `git commit`](#433-git-commit)
+- [全局安装CLI向导](#全局安装cli向导)
+- [然后，在项目目录里，运行下面的命令，使其支持 Angular 的 Commit message 格式。](#然后在项目目录里运行下面的命令使其支持-angular-的-commit-message-格式)
+            - [4.3.4. `git rm & git rm --cached`](#434-git-rm--git-rm---cached)
+            - [分支操作](#分支操作)
+    - [查看分支](#查看分支)
+    - [创建分支](#创建分支)
+    - [切换到分支](#切换到分支)
+    - [创建+切换分支](#创建切换分支)
+    - [合并分支到当前分支](#合并分支到当前分支)
+    - [删除分支](#删除分支)
+        - [4.4. Maven](#44-maven)
+    - [5. 工程化](#5-工程化)
         - [5.1. Docker](#51-docker)
-        - [5.2. 单元测试](#52-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95)
+        - [5.2. 单元测试](#52-单元测试)
             - [5.2.1. Mocha](#521-mocha)
             - [5.2.2. Jest](#522-jest)
             - [5.2.3. SuperTest](#523-supertest)
-    - [6. 开发语言](#6-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80)
+    - [6. 开发语言](#6-开发语言)
         - [6.1. Java](#61-java)
         - [6.2. JavaScript](#62-javascript)
         - [6.3. NodeJS](#63-nodejs)
-            - [6.3.1. 内存泄漏](#631-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F)
+            - [6.3.1. 内存泄漏](#631-内存泄漏)
         - [6.4. TypeScript](#64-typescript)
-    - [7. 数据库](#7-%E6%95%B0%E6%8D%AE%E5%BA%93)
+    - [7. 数据库](#7-数据库)
         - [7.1. MySQL](#71-mysql)
-            - [7.1.1. 锁机制](#711-%E9%94%81%E6%9C%BA%E5%88%B6)
+            - [7.1.1. 锁机制](#711-锁机制)
         - [7.2. Moongo](#72-moongo)
         - [7.3. ElasticSearch](#73-elasticsearch)
         - [7.4. Spark](#74-spark)
@@ -54,8 +71,6 @@
 #### 2.2.2. Shell命令
 
 - `tree`
-
-
 
 ### 2.3. Http协议
 
@@ -79,7 +94,25 @@
 
 ### 4.3. Git
 
-#### 4.3.1. git commit
+#### 4.3.1. 常用命令
+
+```git shell
+## 查询缓存区状态
+git status
+## 添加文件到缓存区
+git add .
+```
+
+#### 4.3.2. 不常用命令
+
+```git shell
+## 查看提交日志
+git log --pretty=oneline
+## 查看命令历史
+git reflog
+```
+
+#### 4.3.3. `git commit`
 
 > **`COPY FROM`** [git commit 规范指南](https://segmentfault.com/a/1190000009048911)
 
@@ -92,6 +125,34 @@ npm install -g commitizen
 commitizen init cz-conventional-changelog --save --save-exact
 
 ```
+
+#### 4.3.4. `git rm & git rm --cached`
+
+> **`COPY FROM`** [git rm与git rm --cached](https://www.cnblogs.com/toward-the-sun/p/6599656.html)
+
+#### 分支操作
+
+```git shell
+## 查看分支
+git branch
+
+## 创建分支
+git branch <name>
+
+## 切换到分支
+git checkout <name>
+
+## 创建+切换分支
+git checkout -b <name>
+
+## 合并分支到当前分支
+git marge <name>
+
+## 删除分支
+git branch -d <name>
+```
+
+### 4.4. Maven
 
 ## 5. 工程化
 
