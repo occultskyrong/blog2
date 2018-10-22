@@ -37,6 +37,7 @@
     - [6.2. JavaScript](#62-javascript)
     - [6.3. NodeJS](#63-nodejs)
         - [6.3.1. 内存泄漏](#631-内存泄漏)
+        - [6.3.2. 编码问题](#632-编码问题)
     - [6.4. TypeScript](#64-typescript)
 - [7. 数据库](#7-数据库)
     - [7.1. MySQL](#71-mysql)
@@ -230,6 +231,28 @@ docker ps -a
 ### 6.3. NodeJS
 
 #### 6.3.1. 内存泄漏
+
+#### 6.3.2. 编码问题
+
+因为`Node`的编码统一使用`UTF-8`，所以极少有可能遇到编码的问题，但是也非绝对，当上传、下载文件时，文件内部的编码一般不是`UTF-8`，导致`Node`文件流生成的`Buffer`对象时产生乱码。
+解决方式：
+
+- 上传文件
+- 下载文件
+
+```javascript
+  const json={}; // 生成对应json或者其他数据
+  const iconv = new Iconv('UTF-8', 'GBK//IGNORE'); // 定义buffer的转码器
+  const content = iconv.convert(json);
+  const filename = iconv.convert('文件名.csv').toString('binary');
+  res.setHeader('Pragma', 'public');
+  res.setHeader('Expires', '0');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0');
+  res.setHeader('Content-Type', 'text/csv; charset=GBK');
+  res.setHeader('Content-Disposition', 'attachment;filename="' + filename + '"');
+  res.setHeader('Content-Length', content.length);
+  res.end(content);
+```
 
 ### 6.4. TypeScript
 
