@@ -1,61 +1,89 @@
 # 技术栈
 
-## 1. 目录
+## 1. 方法论
+
+- 知其然，知其所以然
+- 系统化学习
+
+## 2. 目录
 
 <!-- TOC depthFrom:2 -->
 
-- [1. 目录](#1-目录)
-- [2. 底层原理](#2-底层原理)
-    - [2.1. 操作系统](#21-操作系统)
-    - [2.2. Linux](#22-linux)
-        - [2.2.1. Linux下各文件夹功能](#221-linux下各文件夹功能)
-        - [2.2.2. Shell命令](#222-shell命令)
-    - [2.3. Http协议](#23-http协议)
-    - [2.4. JVM](#24-jvm)
-- [3. 基础知识](#3-基础知识)
-    - [3.1. 数据处理](#31-数据处理)
-        - [3.1.1. MapReduce](#311-mapreduce)
-- [4. 工具](#4-工具)
-    - [4.1. ZooKeeper](#41-zookeeper)
-    - [4.2. Kafka](#42-kafka)
-    - [4.3. Git](#43-git)
-        - [4.3.1. 常用命令](#431-常用命令)
-        - [4.3.2. 不常用命令](#432-不常用命令)
-        - [4.3.3. `git commit`](#433-git-commit)
-        - [4.3.4. `git rm & git rm --cached`](#434-git-rm--git-rm---cached)
-        - [4.3.5. 分支操作](#435-分支操作)
-        - [4.3.6. 自定义`Git`](#436-自定义git)
-    - [4.4. Maven](#44-maven)
-- [5. 工程化](#5-工程化)
-    - [5.1. Docker](#51-docker)
-    - [5.2. 单元测试](#52-单元测试)
-        - [5.2.1. Mocha](#521-mocha)
-        - [5.2.2. Jest](#522-jest)
-        - [5.2.3. SuperTest](#523-supertest)
-- [6. 开发语言](#6-开发语言)
-    - [6.1. Java](#61-java)
-    - [6.2. JavaScript](#62-javascript)
-    - [6.3. NodeJS](#63-nodejs)
-        - [6.3.1. 内存泄漏](#631-内存泄漏)
-        - [6.3.2. 编码问题](#632-编码问题)
-    - [6.4. TypeScript](#64-typescript)
-- [7. 数据库](#7-数据库)
-    - [7.1. MySQL](#71-mysql)
-        - [7.1.1. 锁机制](#711-锁机制)
-    - [7.2. Moongo](#72-moongo)
-    - [7.3. ElasticSearch](#73-elasticsearch)
-    - [7.4. Spark](#74-spark)
-    - [7.5. Hadoop](#75-hadoop)
+- [1. 方法论](#1-方法论)
+- [2. 目录](#2-目录)
+- [3. 底层原理](#3-底层原理)
+    - [3.1. 操作系统](#31-操作系统)
+    - [3.2. Linux](#32-linux)
+        - [3.2.1. 文件系统](#321-文件系统)
+            - [3.2.1.1. 文件权限](#3211-文件权限)
+            - [3.2.1.2. Linux下各文件夹功能](#3212-linux下各文件夹功能)
+        - [3.2.2. Shell命令](#322-shell命令)
+    - [3.3. Http协议](#33-http协议)
+    - [3.4. JVM](#34-jvm)
+- [4. 基础知识](#4-基础知识)
+    - [4.1. 数据处理](#41-数据处理)
+        - [4.1.1. MapReduce](#411-mapreduce)
+- [5. 工具](#5-工具)
+    - [5.1. ZooKeeper](#51-zookeeper)
+    - [5.2. Kafka](#52-kafka)
+    - [5.3. Git](#53-git)
+        - [5.3.1. 常用命令](#531-常用命令)
+        - [5.3.2. 不常用命令](#532-不常用命令)
+        - [5.3.3. `git commit`](#533-git-commit)
+        - [5.3.4. `git rm & git rm --cached`](#534-git-rm--git-rm---cached)
+        - [5.3.5. 分支操作](#535-分支操作)
+        - [5.3.6. 自定义`Git`](#536-自定义git)
+    - [5.4. Maven](#54-maven)
+- [6. 工程化](#6-工程化)
+    - [6.1. Docker](#61-docker)
+    - [6.2. 单元测试](#62-单元测试)
+        - [6.2.1. Mocha](#621-mocha)
+        - [6.2.2. Jest](#622-jest)
+        - [6.2.3. SuperTest](#623-supertest)
+- [7. 开发语言](#7-开发语言)
+    - [7.1. Java](#71-java)
+    - [7.2. JavaScript](#72-javascript)
+    - [7.3. NodeJS](#73-nodejs)
+        - [7.3.1. 内存泄漏](#731-内存泄漏)
+        - [7.3.2. 编码问题](#732-编码问题)
+    - [7.4. TypeScript](#74-typescript)
+- [8. 数据库](#8-数据库)
+    - [8.1. MySQL](#81-mysql)
+        - [8.1.1. 锁机制](#811-锁机制)
+    - [8.2. Moongo](#82-moongo)
+    - [8.3. ElasticSearch](#83-elasticsearch)
+    - [8.4. Spark](#84-spark)
+    - [8.5. Hadoop](#85-hadoop)
 
 <!-- /TOC -->
 
-## 2. 底层原理
+## 3. 底层原理
 
-### 2.1. 操作系统
+### 3.1. 操作系统
 
-### 2.2. Linux
+### 3.2. Linux
 
-#### 2.2.1. Linux下各文件夹功能
+#### 3.2.1. 文件系统
+
+##### 3.2.1.1. 文件权限
+
+> **`COPY FROM`**[Linux 下 ls -l 命令执行显示结果的每一列含义](https://blog.csdn.net/zhuoya_/article/details/77418413)
+>
+> **`COPY FROM`**[Linux修改文件属性及权限](https://blog.csdn.net/qq_36193761/article/details/78817500)
+
+- 文件属性及权限
+
+```shell
+## 显示该文件夹下所有文件和文件夹
+ls -l
+
+## 增加权限
+chmod a+x filename
+```
+
+- 变更权限
+
+##### 3.2.1.2. Linux下各文件夹功能
 
 > **`COPY FROM`**[Linux文件系统](http://c.biancheng.net/cpp/html/2779.html)
 
@@ -78,35 +106,37 @@
 | /var  | variable，主要包含一些可变长度的文件，会经常对数据进行读写，例如日志文件和打印队列里的文件。                                                                                      |
 <!-- markdownlint-enable MD013 -->
 
-#### 2.2.2. Shell命令
+#### 3.2.2. Shell命令
 
 - `tree`
+- `ls`
+- `lsof`
 
-### 2.3. Http协议
+### 3.3. Http协议
 
-### 2.4. JVM
+### 3.4. JVM
 
-## 3. 基础知识
+## 4. 基础知识
 
-### 3.1. 数据处理
+### 4.1. 数据处理
 
-#### 3.1.1. MapReduce
+#### 4.1.1. MapReduce
 
 > [MapReduce: Simplified Data Processing on Large Clusters](https://ai.google/research/pubs/pub62)
 >
 > [[翻译]MapReduce: Simplified Data Processing on Large Clusters](https://www.cnblogs.com/fuzhe1989/p/3413457.html)
 
-## 4. 工具
+## 5. 工具
 
-### 4.1. ZooKeeper
+### 5.1. ZooKeeper
 
-### 4.2. Kafka
+### 5.2. Kafka
 
-### 4.3. Git
+### 5.3. Git
 
 > **`COPY FROM`**[Git教程 - By 廖雪峰](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
-#### 4.3.1. 常用命令
+#### 5.3.1. 常用命令
 
 ```shell
 
@@ -116,7 +146,7 @@ git status
 git add .
 ```
 
-#### 4.3.2. 不常用命令
+#### 5.3.2. 不常用命令
 
 ```shell
 
@@ -126,7 +156,7 @@ git log --pretty=oneline
 git reflog
 ```
 
-#### 4.3.3. `git commit`
+#### 5.3.3. `git commit`
 
 > **`COPY FROM`** [git commit 规范指南](https://segmentfault.com/a/1190000009048911)
 
@@ -140,11 +170,11 @@ commitizen init cz-conventional-changelog --save --save-exact
 
 ```
 
-#### 4.3.4. `git rm & git rm --cached`
+#### 5.3.4. `git rm & git rm --cached`
 
 > **`COPY FROM`** [git rm与git rm --cached](https://www.cnblogs.com/toward-the-sun/p/6599656.html)
 
-#### 4.3.5. 分支操作
+#### 5.3.5. 分支操作
 
 ```shell
 ## 查看分支
@@ -166,7 +196,7 @@ git marge <name>
 git branch -d <name>
 ```
 
-#### 4.3.6. 自定义`Git`
+#### 5.3.6. 自定义`Git`
 
 - 自定义配置
 
@@ -193,17 +223,24 @@ git config --global alias.last 'log -1'
 ```shell
 
 ## 切换到dev
-## 提交dev
-## 合并dev到master
-## 提交master
+git co dev
 
+## 提交dev
+git push
+
+## 合并dev到master
+git co master
+git merge dev
+
+## 提交master
+git push
 ```
 
-### 4.4. Maven
+### 5.4. Maven
 
-## 5. 工程化
+## 6. 工程化
 
-### 5.1. Docker
+### 6.1. Docker
 
 > [Docker run 命令 | 菜鸟教程](http://www.runoob.com/docker/docker-run-command.html)
 
@@ -229,31 +266,31 @@ docker ps
 docker ps -a
 ```
 
-### 5.2. 单元测试
+### 6.2. 单元测试
 
 > [全栈测试实战：用Jest测试Vue+Koa全栈应用](https://blog.csdn.net/itheima_Wujie/article/details/78566617)
 
-#### 5.2.1. Mocha
+#### 6.2.1. Mocha
 
-#### 5.2.2. Jest
+#### 6.2.2. Jest
 
 > [Async testing Koa with Jest](https://hackernoon.com/async-testing-koa-with-jest-1b6e84521b71)
 >
 > [A clear and concise introduction to testing Koa with Jest and Supertest](https://www.valentinog.com/blog/testing-api-koa-jest/)
 
-#### 5.2.3. SuperTest
+#### 6.2.3. SuperTest
 
-## 6. 开发语言
+## 7. 开发语言
 
-### 6.1. Java
+### 7.1. Java
 
-### 6.2. JavaScript
+### 7.2. JavaScript
 
-### 6.3. NodeJS
+### 7.3. NodeJS
 
-#### 6.3.1. 内存泄漏
+#### 7.3.1. 内存泄漏
 
-#### 6.3.2. 编码问题
+#### 7.3.2. 编码问题
 
 因为`Node`的编码统一使用`UTF-8`，所以极少有可能遇到编码的问题，但是也非绝对，当上传、下载文件时，文件内部的编码一般不是`UTF-8`，导致`Node`文件流生成的`Buffer`对象时产生乱码。
 解决方式：
@@ -275,20 +312,20 @@ docker ps -a
   res.end(content);
 ```
 
-### 6.4. TypeScript
+### 7.4. TypeScript
 
-## 7. 数据库
+## 8. 数据库
 
-### 7.1. MySQL
+### 8.1. MySQL
 
-#### 7.1.1. 锁机制
+#### 8.1.1. 锁机制
 
 > [『浅入浅出』MySQL 和 InnoDB](https://draveness.me/mysql-innodb)
 
-### 7.2. Moongo
+### 8.2. Moongo
 
-### 7.3. ElasticSearch
+### 8.3. ElasticSearch
 
-### 7.4. Spark
+### 8.4. Spark
 
-### 7.5. Hadoop
+### 8.5. Hadoop
