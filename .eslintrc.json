@@ -9,14 +9,15 @@
     "GLO": true
   },
   "extends": "airbnb-base",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module",
+    "ecmaVersion": 2017
+  },
   "rules": {
-    "indent": [
-      2,
-      4
-    ],
-    "max-len": [
-      2,
-      120
-    ]
+    "indent": [1, 2],
+    "max-len": [2, 120]
   }
 }
