@@ -24,17 +24,20 @@
 - [4. 基础知识](#4-基础知识)
     - [4.1. 数据处理](#41-数据处理)
         - [4.1.1. MapReduce](#411-mapreduce)
-- [5. 工具](#5-工具)
+- [5. 工具或架构](#5-工具或架构)
     - [5.1. ZooKeeper](#51-zookeeper)
-    - [5.2. Kafka](#52-kafka)
-    - [5.3. Git](#53-git)
-        - [5.3.1. 常用命令](#531-常用命令)
-        - [5.3.2. 不常用命令](#532-不常用命令)
-        - [5.3.3. `git commit`](#533-git-commit)
-        - [5.3.4. `git rm & git rm --cached`](#534-git-rm--git-rm---cached)
-        - [5.3.5. 分支操作](#535-分支操作)
-        - [5.3.6. 自定义`Git`](#536-自定义git)
-    - [5.4. Maven](#54-maven)
+    - [5.2. K8S](#52-k8s)
+    - [5.3. Kafka](#53-kafka)
+    - [5.4. 规则引擎](#54-规则引擎)
+    - [5.5. 取号器（分布式）](#55-取号器分布式)
+    - [5.6. Git](#56-git)
+        - [5.6.1. 常用命令](#561-常用命令)
+        - [5.6.2. 不常用命令](#562-不常用命令)
+        - [5.6.3. `git commit`](#563-git-commit)
+        - [5.6.4. `git rm & git rm --cached`](#564-git-rm--git-rm---cached)
+        - [5.6.5. 分支操作](#565-分支操作)
+        - [5.6.6. 自定义`Git`](#566-自定义git)
+    - [5.7. Maven](#57-maven)
 - [6. 工程化](#6-工程化)
     - [6.1. Docker](#61-docker)
     - [6.2. 单元测试](#62-单元测试)
@@ -89,22 +92,22 @@ chmod a+x filename
 > **`COPY FROM`**[Linux文件系统](http://c.biancheng.net/cpp/html/2779.html)
 
 <!-- markdownlint-disable MD013 -->
-| 目录  | 说明                                                                                                                                                                              |
-| :---- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| /     | 根目录，只能包含目录，不能包含具体文件。                                                                                                                                          |
-| /bin  | binary，二进制/可执行文件。很多命令就对应/bin目录下的某个程序，例如 ls、cp、mkdir。/bin目录对所有用户有效。                                                                       |
-| /boot | 系统启动文件，例如Linux内核、引导程序等。                                                                                                                                         |
-| /dev  | device，硬件驱动程序。例如声卡、磁盘驱动等，还有如 /dev/null、/dev/console、/dev/zero、/dev/full 等文件。                                                                         |
-| /etc  | etcetera，主要包含系统配置文件和用户、用户组配置文件。                                                                                                                            |
-| /home | 用户工作目录（主目录），每个用户都会分配一个目录。                                                                                                                                |
-| /lib  | library，主要包含共享库文件，类似于Windows下的DLL；有时也会包含内核相关文件。                                                                                                     |
-| /mnt  | mount，临时挂载文件系统。这个目录一般是用于存放挂载储存设备的挂载目录的，例如挂载CD-ROM的cdrom目录。                                                                              |
-| /opt  | option，可择的文件目录，一般使用用于安装自定义软件包或者第三方工具                                                                                                                |
-| /proc | process，操作系统运行时，进程（正在运行中的程序）信息及内核信息（比如cpu、硬盘分区、内存信息等）存放在这里。<br>/proc目录伪装的文件系统proc的挂载目录，proc并不是真正的文件系统。 |
-| /sbin | superuser binary，和 /bin 类似，主要包含可执行文件，不过一般是系统管理所需要的，不是所有用户都需要。                                                                              |
-| /tmp  | temporary，临时文件目录，系统重启后不会被保存。                                                                                                                                   |
-| /usr  | user，该目录下的文件比较混杂，包含了管理命令、共享文件、库文件等，可以被很多用户使用。                                                                                            |
-| /var  | variable，主要包含一些可变长度的文件，会经常对数据进行读写，例如日志文件和打印队列里的文件。                                                                                      |
+| 目录  | 说明                                                                                                         |
+| :---- | :----------------------------------------------------------------------------------------------------------- |
+| /     | 根目录，只能包含目录，不能包含具体文件。                                                                     |
+| /bin  | binary，二进制/可执行文件。很多命令就对应/bin目录下的某个程序，例如 ls、cp、mkdir。/bin目录对所有用户有效。  |
+| /boot | 系统启动文件，例如Linux内核、引导程序等。                                                                    |
+| /dev  | device，硬件驱动程序。例如声卡、磁盘驱动等，还有如 /dev/null、/dev/console、/dev/zero、/dev/full 等文件。    |
+| /etc  | etcetera，主要包含系统配置文件和用户、用户组配置文件。                                                       |
+| /home | 用户工作目录（主目录），每个用户都会分配一个目录。                                                           |
+| /lib  | library，主要包含共享库文件，类似于Windows下的DLL；有时也会包含内核相关文件。                                |
+| /mnt  | mount，临时挂载文件系统。这个目录一般是用于存放挂载储存设备的挂载目录的，例如挂载CD-ROM的cdrom目录。         |
+| /opt  | option，可择的文件目录，一般使用用于安装自定义软件包或者第三方工具                                           |
+| /proc | process，操作系统运行时，进程（正在运行中的程序）信息及内核信息（比如cpu、硬盘分区、内存信息等）存放在这里。 |
+| /sbin | superuser binary，和 /bin 类似，主要包含可执行文件，不过一般是系统管理所需要的，不是所有用户都需要。         |
+| /tmp  | temporary，临时文件目录，系统重启后不会被保存。                                                              |
+| /usr  | user，该目录下的文件比较混杂，包含了管理命令、共享文件、库文件等，可以被很多用户使用。                       |
+| /var  | variable，主要包含一些可变长度的文件，会经常对数据进行读写，例如日志文件和打印队列里的文件。                 |
 <!-- markdownlint-enable MD013 -->
 
 #### 3.2.2. Shell命令
@@ -127,17 +130,23 @@ chmod a+x filename
 >
 > [[翻译]MapReduce: Simplified Data Processing on Large Clusters](https://www.cnblogs.com/fuzhe1989/p/3413457.html)
 
-## 5. 工具
+## 5. 工具或架构
 
 ### 5.1. ZooKeeper
 
-### 5.2. Kafka
+### 5.2. K8S
 
-### 5.3. Git
+### 5.3. Kafka
+
+### 5.4. 规则引擎
+
+### 5.5. 取号器（分布式）
+
+### 5.6. Git
 
 > **`COPY FROM`**[Git教程 - By 廖雪峰](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
-#### 5.3.1. 常用命令
+#### 5.6.1. 常用命令
 
 ```shell
 
@@ -147,7 +156,7 @@ git status
 git add .
 ```
 
-#### 5.3.2. 不常用命令
+#### 5.6.2. 不常用命令
 
 ```shell
 
@@ -157,7 +166,7 @@ git log --pretty=oneline
 git reflog
 ```
 
-#### 5.3.3. `git commit`
+#### 5.6.3. `git commit`
 
 > **`COPY FROM`** [git commit 规范指南](https://segmentfault.com/a/1190000009048911)
 
@@ -171,11 +180,11 @@ commitizen init cz-conventional-changelog --save --save-exact
 
 ```
 
-#### 5.3.4. `git rm & git rm --cached`
+#### 5.6.4. `git rm & git rm --cached`
 
 > **`COPY FROM`** [git rm与git rm --cached](https://www.cnblogs.com/toward-the-sun/p/6599656.html)
 
-#### 5.3.5. 分支操作
+#### 5.6.5. 分支操作
 
 ```shell
 ## 查看分支
@@ -197,7 +206,7 @@ git marge <name>
 git branch -d <name>
 ```
 
-#### 5.3.6. 自定义`Git`
+#### 5.6.6. 自定义`Git`
 
 - 自定义配置
 
@@ -237,7 +246,7 @@ git merge dev
 git push
 ```
 
-### 5.4. Maven
+### 5.7. Maven
 
 ## 6. 工程化
 
@@ -323,10 +332,64 @@ docker ps -a
 
 > [『浅入浅出』MySQL 和 InnoDB](https://draveness.me/mysql-innodb)
 
-### 8.2. Moongo
+### 8.2. Mongo
+
+#### MongoDB
+
+#### Mongoose
+
+##### `Schema`
+
+- 数组数据结构
+
+> [Mongoose >> Populate](https://mongoosejs.com/docs/populate.html)
+>
+> [Mongoose - using Populate on an array of ObjectId](https://stackoverflow.com/questions/10568281/mongoose-using-populate-on-an-array-of-objectid)
+
+```JavaScript
+const { Schema } = require('mongoose');
+const demo = new Schema({
+  key1: { type: 'ObjectId', ref: 'Key1' },
+  key2: [{ type: 'ObjectId', ref: 'Key2' }],
+  key3: String,
+  key4: [{ type: String }],
+})
+```
+
+##### `find`
+
+- 查询结果的构造及解析
+
+> [Add a new property to Mongoose Document after fetch [duplicate]](https://stackoverflow.com/questions/31534534/add-a-new-property-to-mongoose-document-after-fetch)
+
+##### `Aggregate`
+
+- 聚合查询中时间匹配查询
+
+> [Mongo: dates in match aggregate query seem to be ignored](https://stackoverflow.com/questions/15024383/mongo-dates-in-match-aggregate-query-seem-to-be-ignored)
+>
+> [Aggregate $match with ISODate](https://github.com/Automattic/mongoose/issues/1599)
+
+```JavaScript
+Model.aggregate([{ $match: { createdAt: { $gte: new Date(start) , $lte: new Date(end) } } }]);
+```
+
+- 聚合查询中`_id`匹配查询
+
+```JavaScript
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
+// type:string - id
+Model.aggregate([{ $match: { _id: new Object(id) } }]);
+
+```
 
 ### 8.3. ElasticSearch
 
 ### 8.4. Spark
 
 ### 8.5. Hadoop
+
+## 解决方案
+
+### 电商系统
