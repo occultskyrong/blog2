@@ -19,6 +19,8 @@
             - [3.2.1.1. 文件权限](#3211-文件权限)
             - [3.2.1.2. Linux下各文件夹功能](#3212-linux下各文件夹功能)
         - [3.2.2. Shell命令](#322-shell命令)
+            - [3.2.2.1. 工具命令](#3221-工具命令)
+            - [3.2.2.2. 自定义命令](#3222-自定义命令)
     - [3.3. Http协议](#33-http协议)
     - [3.4. JVM](#34-jvm)
 - [4. 基础知识](#4-基础知识)
@@ -36,7 +38,7 @@
         - [5.6.3. `git commit`](#563-git-commit)
         - [5.6.4. `git rm & git rm --cached`](#564-git-rm--git-rm---cached)
         - [5.6.5. 分支操作](#565-分支操作)
-        - [5.6.6. 自定义`Git`](#566-自定义git)
+        - [5.6.6. 自定义`Git`命令](#566-自定义git命令)
     - [5.7. Maven](#57-maven)
 - [6. 工程化](#6-工程化)
     - [6.1. Docker](#61-docker)
@@ -54,10 +56,17 @@
 - [8. 数据库](#8-数据库)
     - [8.1. MySQL](#81-mysql)
         - [8.1.1. 锁机制](#811-锁机制)
-    - [8.2. Moongo](#82-moongo)
+    - [8.2. Mongo](#82-mongo)
+        - [8.2.1. MongoDB](#821-mongodb)
+        - [8.2.2. Mongoose](#822-mongoose)
+            - [8.2.2.1. `Schema`](#8221-schema)
+            - [8.2.2.2. `find`](#8222-find)
+            - [8.2.2.3. `Aggregate`](#8223-aggregate)
     - [8.3. ElasticSearch](#83-elasticsearch)
     - [8.4. Spark](#84-spark)
     - [8.5. Hadoop](#85-hadoop)
+- [9. 解决方案](#9-解决方案)
+    - [9.1. 电商系统](#91-电商系统)
 
 <!-- /TOC -->
 
@@ -112,9 +121,36 @@ chmod a+x filename
 
 #### 3.2.2. Shell命令
 
+##### 3.2.2.1. 工具命令
+
 - `tree`
 - `ls`
+
+> [MAC OS X 命令终端的颜色显示](https://blog.csdn.net/wxqee/article/details/49406597)
+
 - `lsof`
+
+##### 3.2.2.2. 自定义命令
+
+- `Mac`自定义`shell`命令
+
+> [Mac: Alias[设置命令的别名]](https://www.cnblogs.com/ihojin/p/mac-align.html)
+
+```shell
+## 编辑，新增命令别名
+vim ~/.bash_profile
+
+## 更新内建命令
+source ~/.bash_profile
+```
+
+- 命令别名
+
+```shell
+# User Specific Shell And Functions
+## 查询en0网卡的IP地址
+alias ipget="ipconfig getifaddr en0"
+```
 
 ### 3.3. Http协议
 
@@ -206,7 +242,7 @@ git marge <name>
 git branch -d <name>
 ```
 
-#### 5.6.6. 自定义`Git`
+#### 5.6.6. 自定义`Git`命令
 
 - 自定义配置
 
@@ -334,11 +370,11 @@ docker ps -a
 
 ### 8.2. Mongo
 
-#### MongoDB
+#### 8.2.1. MongoDB
 
-#### Mongoose
+#### 8.2.2. Mongoose
 
-##### `Schema`
+##### 8.2.2.1. `Schema`
 
 - 数组数据结构
 
@@ -356,13 +392,13 @@ const demo = new Schema({
 })
 ```
 
-##### `find`
+##### 8.2.2.2. `find`
 
 - 查询结果的构造及解析
 
 > [Add a new property to Mongoose Document after fetch [duplicate]](https://stackoverflow.com/questions/31534534/add-a-new-property-to-mongoose-document-after-fetch)
 
-##### `Aggregate`
+##### 8.2.2.3. `Aggregate`
 
 - 聚合查询中时间匹配查询
 
@@ -390,6 +426,6 @@ Model.aggregate([{ $match: { _id: new Object(id) } }]);
 
 ### 8.5. Hadoop
 
-## 解决方案
+## 9. 解决方案
 
-### 电商系统
+### 9.1. 电商系统
