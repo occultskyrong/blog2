@@ -91,6 +91,7 @@
 ls -l
 
 ## 增加权限
+### 给所有人增加执行权限
 chmod a+x filename
 ```
 
