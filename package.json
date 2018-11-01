@@ -1,27 +1,42 @@
 {
-  "name": "blog2",
-  "version": "1.0.0",
-  "description": "blog v2 for sky91",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/occultskyrong/blog2.git"
-  },
   "author": "occultskyrong",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/occultskyrong/blog2/issues"
-  },
-  "homepage": "https://github.com/occultskyrong/blog2#readme",
-  "devDependencies": {
-    "cz-conventional-changelog": "^2.1.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "dependencies": {
+    "hexo": "^3.7.0",
+    "hexo-generator-archive": "^0.1.5",
+    "hexo-generator-category": "^0.1.3",
+    "hexo-generator-index": "^0.2.1",
+    "hexo-generator-tag": "^0.2.0",
+    "hexo-renderer-ejs": "^0.3.1",
+    "hexo-renderer-stylus": "^0.3.3",
+    "hexo-renderer-marked": "^0.3.2",
+    "hexo-server": "^0.3.1"
+  },
+  "description": "blog v2 for sky91",
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "hexo": {
+    "version": "3.8.0"
+  },
+  "homepage": "https://github.com/occultskyrong/blog2#readme",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "blog2",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/occultskyrong/blog2.git"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "version": "2.0.0"
 }

@@ -19,9 +19,12 @@ code/npm-lock.log
 code/yarn.lock
 
 # logs
+*.log
 
-# download excel
-
-# general css
+# static file
+public/
+.deploy*/
 
 # temp file
+Thumbs.db
+db.json
