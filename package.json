@@ -35,6 +35,7 @@
     "type": "git",
     "url": "git+https://github.com/occultskyrong/blog2.git"
   },
+  "script": "./bin/hexo.sh",
   "scripts": {
     "test": "jest"
   },

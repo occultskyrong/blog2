@@ -10,7 +10,7 @@
 
 ```shell
 ## 下载项目
-git clone https://github.com/occultskyrong/blog2.git
+git clone --recurse-submodules https://github.com/occultskyrong/blog2.git
 
 ## 安装依赖
 cnpm i
