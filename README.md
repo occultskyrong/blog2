@@ -6,6 +6,16 @@
 
 ## 项目说明
 
+### 命令
+
+```shell
+## 安装hexo的cli
+sudo npm install hexo-cli -g
+
+## 启动服务
+hexo server
+```
+
 ### 概述
 
 基于`Hexo`构建博客系统
