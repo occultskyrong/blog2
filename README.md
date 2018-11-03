@@ -9,8 +9,17 @@
 ### 命令
 
 ```shell
+## 下载项目
+git clone https://github.com/occultskyrong/blog2.git
+
+## 安装依赖
+cnpm i
+
 ## 安装hexo的cli
 sudo npm install hexo-cli -g
+
+## 安装theme-next
+git clone https://github.com/theme-next/hexo-theme-next themes/next
 
 ## 启动服务
 hexo server
