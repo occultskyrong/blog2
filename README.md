@@ -23,6 +23,9 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 
 ## 启动服务
 hexo server
+
+## 新增文章
+hexo new <title>
 ```
 
 ### 概述
