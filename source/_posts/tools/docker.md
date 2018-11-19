@@ -75,7 +75,7 @@ NAMES 容器名称
 
 # 自定义镜像
 
-## 通过已有镜像、更新后提交镜像
+## TODO:通过已有镜像、更新后提交镜像
 
 ```shell
 ## 下载镜像
@@ -86,6 +86,8 @@ docker run -t -i --name elk elasticsearch
 
 ```
 
-### 使用`DockerFile`构建
+## 使用`DockerFile`构建
 
-> *COPY FROM* [docker之Dockerfile实践](https://www.cnblogs.com/jsonhc/p/7767669.html)
+> *`COPY FROM`* [菜鸟教程 > Docker 镜像使用 > 构建镜像](http://www.runoob.com/docker/docker-image-usage.html)
+>
+> *`COPY FROM`* [wadeson > docker之Dockerfile实践](https://www.cnblogs.com/jsonhc/p/7767669.html)
