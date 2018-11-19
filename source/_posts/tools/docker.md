@@ -35,6 +35,9 @@ TAG：镜像的标签，同一仓库源可以有多个 TAG，代表这个仓库�
 IMAGE ID：镜像ID
 CREATED：镜像创建时间
 SIZE：镜像大小
+
+# 删除镜像
+docker rmi <image-name>
 ```
 
 # 管理container
@@ -71,6 +74,10 @@ docker container ls -a
 CONTAINER ID 容器编号
 IMAGE 镜像来源
 NAMES 容器名称
+
+# 容器内执行
+docker exec -i -t  <container-name> /bin/bash
+
 ```
 
 # 自定义镜像

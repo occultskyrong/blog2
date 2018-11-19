@@ -130,6 +130,7 @@ chmod a+x filename
 
 ##### 3.2.2.1. 工具命令
 
+- `axel`
 - `tree`
 - `ls`
 
