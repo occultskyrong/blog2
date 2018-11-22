@@ -47,8 +47,8 @@ unzip logstash-6.5.0.zip
 cd logstash-6.5.0/
 
 # 配置并启动
-vim ./config/pipeline.conf
-./bin/logstash -f ./config/pipeline.conf
+vim ./config/pipeline.yml
+./bin/logstash -f ./config/pipeline.yml
 ```
 
 # Filebeat
@@ -64,4 +64,13 @@ cd filebeat-6.5.0-darwin-x86_64
 wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.5.0-linux-x86.tar.gz
 tar xzvf filebeat-6.5.0-linux-x86.tar.gz
 cd filebeat-6.5.0-linux-x86
+```
+
+# Kibana
+
+## 安装K
+
+```shell
+wget https://artifacts.elastic.co/downloads/kibana/kibana-6.5.0-darwin-x86_64.tar.gz
+tar xzvf kibana-6.5.0-darwin-x86_64.tar.gz
 ```

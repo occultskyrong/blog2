@@ -6,6 +6,8 @@ tags:
 ---
 # 技术栈
 
+========================
+
 ## 1. 方法论
 
 - 知其然，知其所以然
@@ -131,6 +133,19 @@ chmod a+x filename
 ##### 3.2.2.1. 工具命令
 
 - `axel`
+    - 说明：
+        - Light command line download accelerator for Linux and Unix
+        - Linux下一个不错的HTTP/ftp高速下载工具。支持多线程下载、断点续传，且可以从多个地址或者从一个地址的多个连接来下载同一个文件。
+    - 官网：[GitHub » axel-download-accelerator/axel](https://github.com/axel-download-accelerator/axel)
+    - 安装：`brew install axel`
+    - 用法：
+        - 最大连接数：`-n x`，如 `-n 5`，即最多使用5个连接。
+        - 最大下载速度：`-s x`，如 `-s 1024`，即最大速度为 `1024bytes/s`
+    - 参考：
+
+    > [Linux下载工具wget和axel简介](https://www.kafan.cn/edu/6141522.html)
+    > [Linux命令大全 » 网络管理 » axel](http://man.linuxde.net/axel)
+
 - `tree`
 - `ls`
 
@@ -437,3 +452,5 @@ Model.aggregate([{ $match: { _id: new Object(id) } }]);
 ## 9. 解决方案
 
 ### 9.1. 电商系统
+
+========================
