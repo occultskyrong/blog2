@@ -24,6 +24,9 @@ git clone https://github.com/theme-next/hexo-theme-next themes/next
 ## 启动服务
 hexo server
 
+## 使用pm2守护
+pm2 start package.json --name blog2
+
 ## 新增文章
 hexo new <title>
 ```
