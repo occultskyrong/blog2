@@ -22,7 +22,7 @@ const crypto = require('crypto');
  * @return {Promise} promise 随机盐
  */
 const getSalt = (size = 32) => new Promise((resolve, reject) => {
-    crypto.randomBytes(size, (err, buf) => (err ? reject(err) : resolve(buf.toString('hex'))));
+  crypto.randomBytes(size, (err, buf) => (err ? reject(err) : resolve(buf.toString('hex'))));
 });
 
 /**
@@ -33,14 +33,14 @@ const getSalt = (size = 32) => new Promise((resolve, reject) => {
  * @return {Promise} promise 密文
  */
 const setPassword = (text, salt) => new Promise((resolve, reject) => {
-    crypto.pbkdf2(text, salt, 4096, 64, 'sha512', (err, derivedKey) => {
-        if (err) {
-            reject(err);
-        } else {
-            const pwd = derivedKey.toString('hex');
-            resolve(pwd);
-        }
-    });
+  crypto.pbkdf2(text, salt, 4096, 64, 'sha512', (err, derivedKey) => {
+    if (err) {
+      reject(err);
+    } else {
+      const pwd = derivedKey.toString('hex');
+      resolve(pwd);
+    }
+  });
 });
 
 /**
@@ -50,18 +50,18 @@ const setPassword = (text, salt) => new Promise((resolve, reject) => {
  * @return {Promise} promise 随机盐和密文
  */
 const getPassword = (text, size = 32) => new Promise((resolve, reject) => {
-    let salt = '';
-    getSalt(size)
-        .then((_salt) => {
-            salt = _salt;
-            return setPassword(text, _salt);
-        })
-        .then(pwd => resolve({ pwd, salt }))
-        .catch(reject);
+  let salt = '';
+  getSalt(size)
+    .then((_salt) => {
+      salt = _salt;
+      return setPassword(text, _salt);
+    })
+    .then(pwd => resolve({ pwd, salt }))
+    .catch(reject);
 });
 
 module.exports = {
-    getSalt, // 生成随机盐
-    getPassword, // 生成随机盐和密文
-    setPassword, // 生成随机密码
+  getSalt, // 生成随机盐
+  getPassword, // 生成随机盐和密文
+  setPassword, // 生成随机密码
 };

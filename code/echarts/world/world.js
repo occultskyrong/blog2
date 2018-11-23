@@ -18,12 +18,20 @@ const resultWorldCountryArray = []; // 结果集
 worldCountryArray.forEach((worldCountryItem) => {
   const item = worldCountryItem;
   const { properties: { name } } = item; // 国家数据:国家名称
-  const worldCountryCenter = name in worldCountryCenterObject ? worldCountryCenterObject[name] : [];
-  const worldCountryTranslation = name in worldCountryTranslationObject ? worldCountryTranslationObject[name] : '';
+  const boo1 = name in worldCountryCenterObject;
+  const boo2 = name in worldCountryTranslationObject;
+  const worldCountryCenter = boo1 ? worldCountryCenterObject[name] : [];
+  const worldCountryTranslation = boo2 ? worldCountryTranslationObject[name] : '';
+  // if (!boo1 || !boo2) {
+  // console.info(name, boo1 ? '' : 'x1', boo2 ? '' : 'x2');
+  // }
   item.properties.center_point = worldCountryCenter;
   item.properties.chinese_name = worldCountryTranslation;
   resultWorldCountryArray.push(item);
 });
 
 worldCountryJson.features = resultWorldCountryArray;
+
+// console.info(`共计【${resultWorldCountryArray.length}】个国家或地区`);
+
 fs.writeFileSync(resultFileName, JSON.stringify(worldCountryJson));
