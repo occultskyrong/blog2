@@ -12,35 +12,43 @@ link: https://elastalert.readthedocs.io/en/latest/ruletypes.html
 
 ## 1. 说明
 
-- 参考文档
+### 1.1. 参考文档
+
 > **COPY FROM** [ElastAlert » Rule Types and Configuration Options](https://elastalert.readthedocs.io/en/latest/ruletypes.html)
-- 格式
-    - `()`内为增加的说明情况、或举例
-    - 适当修改内容格式，方便阅读
-    - 标题中带有`*`为增加的内容
-- 翻译原则
-    - 原则上按照原文直译，使用`Google Translate`，感谢 [Google翻译](translate.google.com)
-- **要点**
-    - `.yaml`中
-        - 设置`Boolean`值，使用`True`和`False`而非`true`，注意大小写
-        - `key: value`，中间不要缺失空格，`: `
+
+### 1.2. 格式说明
+
+- `()`内为增加的说明情况、或举例
+- 适当修改内容格式，方便阅读
+- 标题中带有`*`为增加的内容
+
+### 1.3. 翻译原则
+
+- 原则上按照原文直译，使用`Google Translate`，感谢 [Google翻译](translate.google.com)
+- `You`和`Your`翻译为"你"，而非"您"。
+- 大部分内容未翻译，直接贴原文
+
+### 1.4. 要点
+
+- `.yaml`中
+    - 设置`Boolean`值，使用`True`和`False`而非`true`，注意大小写
+    - `key: value`，中间不要缺失空格，`: `
+    - `filter`中，严格遵循`python`的格式，注意`Tab`与空格的数量，保证合理的对齐
+- 错误检查
+    - 使用`elastalert-test-rule`时，将`filter`内容修改为一个明显不合理的`DSL`，会在控制台打印出执行的`ES DSL`，此时可以检查错误原因
 
 ## 2. 目录
 
-<!-- TOC depthFrom:2 -->
+<!-- TOC depthFrom:2 depthTo:3 -->
 
 - [1. 说明](#1-说明)
+    - [1.1. 参考文档](#11-参考文档)
+    - [1.2. 格式说明](#12-格式说明)
+    - [1.3. 翻译原则](#13-翻译原则)
+    - [1.4. 要点](#14-要点)
 - [2. 目录](#2-目录)
 - [3. 配置选项列表](#3-配置选项列表)
     - [3.1. 通用配置选项](#31-通用配置选项)
-        - [3.1.1. 必需设置](#311-必需设置)
-            - [3.1.1.1. es_host](#3111-es_host)
-            - [3.1.1.2. es_port](#3112-es_port)
-            - [3.1.1.3. index](#3113-index)
-            - [3.1.1.4. name](#3114-name)
-            - [3.1.1.5. type](#3115-type)
-            - [3.1.1.6. alert](#3116-alert)
-        - [3.1.2. 可选设置](#312-可选设置)
 - [4. 测试你的规则](#4-测试你的规则)
 - [5. 规则类型](#5-规则类型)
     - [5.1. Any](#51-any)
@@ -48,9 +56,6 @@ link: https://elastalert.readthedocs.io/en/latest/ruletypes.html
     - [5.3. Whitelist](#53-whitelist)
     - [5.4. Change](#54-change)
     - [5.5. Frequency | **频率**](#55-frequency--频率)
-        - [5.5.1. 必需设置](#551-必需设置)
-        - [5.5.2. 可选设置](#552-可选设置)
-        - [5.5.3. *举个栗子](#553-举个栗子)
     - [5.6. Spike](#56-spike)
     - [5.7. Flatline](#57-flatline)
     - [5.8. New Term](#58-new-term)
@@ -58,6 +63,32 @@ link: https://elastalert.readthedocs.io/en/latest/ruletypes.html
     - [5.10. Metric Aggregation](#510-metric-aggregation)
     - [5.11. Percentage Match](#511-percentage-match)
 - [6. 报警方式](#6-报警方式)
+    - [6.1. Alert Subject](#61-alert-subject)
+    - [6.2. Alert Content](#62-alert-content)
+    - [6.3. Command](#63-command)
+    - [6.4. Email](#64-email)
+    - [6.5. Jira](#65-jira)
+    - [6.6. OpsGenie](#66-opsgenie)
+    - [6.7. SNS](#67-sns)
+    - [6.8. HipChat](#68-hipchat)
+    - [6.9. Stride](#69-stride)
+    - [6.10. MS Teams](#610-ms-teams)
+    - [6.11. Slack](#611-slack)
+    - [6.12. Mattermost](#612-mattermost)
+    - [6.13. Telegram](#613-telegram)
+    - [6.14. GoogleChat](#614-googlechat)
+    - [6.15. PagerDuty](#615-pagerduty)
+    - [6.16. Exotel](#616-exotel)
+    - [6.17. Twilio](#617-twilio)
+    - [6.18. VictorOps](#618-victorops)
+    - [6.19. Gitter](#619-gitter)
+    - [6.20. ServiceNow](#620-servicenow)
+    - [6.21. Debug](#621-debug)
+    - [6.22. Stomp](#622-stomp)
+    - [6.23. Alerta](#623-alerta)
+    - [6.24. HTTP POST](#624-http-post)
+    - [6.25. Alerter](#625-alerter)
+    - [6.26. theHive](#626-thehive)
 
 <!-- /TOC -->
 
@@ -150,33 +181,33 @@ link: https://elastalert.readthedocs.io/en/latest/ruletypes.html
 
 #### 3.1.1. 必需设置
 
-##### 3.1.1.1. es_host
+##### es_host
 
 `es_host`: The hostname of the Elasticsearch cluster the rule will use to query. (Required, string, no default)
 The environment variable `ES_HOST` will override this field.
 
-##### 3.1.1.2. es_port
+##### es_port
 
 `es_port`: The port of the Elasticsearch cluster. (Required, number, no default)
 The environment variable `ES_PORT` will override this field.
 
-##### 3.1.1.3. index
+##### index
 
 `index`: The name of the index that will be searched. Wildcards can be used here, such as:
 `index: my-index-*` which will match `my-index-2014-10-05`. You can also use a format string containing
 `%Y` for year, `%m` for month, and `%d` for day. To use this, you must also set `use_strftime_index` to true. (Required, string, no default)
 
-##### 3.1.1.4. name
+##### name
 
 `name`: The name of the rule. This must be unique across all rules. The name will be used in
 alerts and used as a key when writing and reading search metadata back from Elasticsearch. (Required, string, no default)
 
-##### 3.1.1.5. type
+##### type
 
 `type`: The `RuleType` to use. This may either be one of the built in rule types, see :ref:`Rule Types <ruletypes>` section below for more information,
 or loaded from a module. For loading from a module, the type should be specified as `module.file.RuleName`. (Required, string, no default)
 
-##### 3.1.1.6. alert
+##### alert
 
 `alert`: The `Alerter` type to use. This may be one or more of the built in alerts, see :ref:`Alert Types <alerts>` section below for more information,
 or loaded from a module. For loading from a module, the alert should be specified as `module.file.AlertName`. (Required, string or list, no default)
@@ -1093,7 +1124,7 @@ versus
 If multiple of the same alerter type are used, top level settings will be used as the default and inline settings will override those
 for each alerter.
 
-Alert Subject
+### 6.1. Alert Subject
 
 E-mail subjects, JIRA issue summaries, PagerDuty alerts, or any alerter that has a "subject" can be customized by adding an `alert_subject`
 that contains a custom summary.
@@ -1114,7 +1145,7 @@ In case the rule matches multiple objects in the index, only the first match is 
 
 If the field(s) mentioned in the arguments list are missing, the email alert will have the text `alert_missing_value` in place of its expected value. This will also occur if `use_count_query` is set to true.
 
-Alert Content
+### 6.2. Alert Content
 
 There are several ways to format the body text of the various types of events. In EBNF::
 
@@ -1170,7 +1201,7 @@ field_values will contain every key value pair included in the results from Elas
 every key in `include`, every key in `top_count_keys`, `query_key`, and `compare_key`. If the alert spans multiple events, these values may
 come from an individual event, usually the one which triggers the alert.
 
-Command
+### 6.3. Command
 
 The command alert allows you to execute an arbitrary command and pass arguments or stdin from the match. Arguments to the command can use
 Python format string syntax to access parts of the match. The alerter will open a subprocess and optionally pass the match, or matches
@@ -1212,58 +1243,83 @@ Example usage using new-style format::
       - command
     command: ["/bin/send_alert", "--username", "{match[username]}"]
 
-Email
+### 6.4. Email
 
-This alert will send an email. It connects to an smtp server located at `smtp_host`, or localhost by default.
-If available, it will use STARTTLS.
+**此警报将发送电子邮件。** 它连接到位于`smtp_host`，或默认连接到`localhost`的`smtp`服务器。如果可用，它将使用`STARTTLS`。
 
-This alert requires one additional option:
+#### 必须配置
 
-`email`: An address or list of addresses to sent the alert to.
+##### `email`
 
-Optional:
+发送警报的一个地址或多个地址列表。
 
-`email_from_field`: Use a field from the document that triggered the alert as the recipient. If the field cannot be found,
-the `email` value will be used as a default. Note that this field will not be available in every rule type, for example, if
-you have `use_count_query` or if it's `type: flatline`. You can optionally add a domain suffix to the field to generate the
-address using `email_add_domain`. It can be a single recipient or list of recipients. For example, with the following settings::
+#### 可选配置
 
+##### `email_from_field`
+
+- 使用触发警报的文档中的字段作为收件人。
+- 如果找不到该字段，则`email`值将用作默认值。
+- 注意，这个字段不会在每个规则类型中都可用，例如，如果你有`use_count_query`或者`type:flatline`。
+- 你可以选择在字段中添加域后缀，以使用`email_add_domain`生成地址。
+- 它可以是单个收件人或收件人列表。 例如，使用以下设置：
+
+```conf
     email_from_field: "data.user"
     email_add_domain: "@example.com"
+```
 
-and a match `{"@timestamp": "2017", "data": {"foo": "bar", "user": "qlo"}}`
+举个栗子：当匹配到如下文档时，`{"@timestamp": "2017", "data": {"foo": "bar", "user": "qlo"}}`，将发送一封电子邮件给`qlo@example.com`
 
-an email would be sent to `qlo@example.com`
+##### `smtp_host`
 
-`smtp_host`: The SMTP host to use, defaults to localhost.
+要使用的`SMTP`主机，默认为`localhost`。
 
-`smtp_port`: The port to use. Default is 25.
+##### `smtp_port`
 
-`smtp_ssl`: Connect the SMTP host using TLS, defaults to `false`. If `smtp_ssl` is not used, ElastAlert will still attempt
-STARTTLS.
+要使用的端口。默认值为`25`。
 
-`smtp_auth_file`: The path to a file which contains SMTP authentication credentials. The path can be either absolute or relative
-to the given rule. It should be YAML formatted and contain two fields, `user` and `password`. If this is not present,
-no authentication will be attempted.
+##### `smtp_ssl`
 
-`smtp_cert_file`: Connect the SMTP host using the given path to a TLS certificate file, default to `None`.
+使用`TLS`连接`SMTP`主机，默认为`false`。如果未使用`smtp_ssl`，`ElastAlert`仍将尝试`STARTTLS`。
 
-`smtp_key_file`: Connect the SMTP host using the given path to a TLS key file, default to `None`.
+##### `smtp_auth_file`
 
-`email_reply_to`: This sets the Reply-To header in the email. By default, the from address is ElastAlert@ and the domain will be set
+- 包含`SMTP`身份验证凭据的文件的路径。
+- 路径可以是给定规则(当前规则文件所在文件系统的路径)的绝对路径或相对路径。
+- 它应该是`YAML`格式并包含两个字段，`user`和`password`。
+- 如果不存在，则不会尝试进行身份验证。
+
+##### `smtp_cert_file`
+
+使用给定路径将`SMTP`主机连接到`TLS`证书文件，默认为`None`.
+
+##### `smtp_key_file`
+
+Connect the SMTP host using the given path to a TLS key file, default to `None`.
+
+##### `email_reply_to`
+
+This sets the Reply-To header in the email. By default, the from address is ElastAlert@ and the domain will be set
 by the smtp server.
 
-`from_addr`: This sets the From header in the email. By default, the from address is ElastAlert@ and the domain will be set
-by the smtp server.
+##### `from_addr`
 
-`cc`: This adds the CC emails to the list of recipients. By default, this is left empty.
+这将在电子邮件中设置`From`标头。默认情况下，`from`地址为`ElastAlert @`，域将由`smtp`服务器设置。
 
-`bcc`: This adds the BCC emails to the list of recipients but does not show up in the email message. By default, this is left empty.
+##### `cc`
 
-`email_format`: If set to `html`, the email's MIME type will be set to HTML, and HTML content should correctly render. If you use this,
-you need to put your own HTML into `alert_text` and use `alert_text_type: alert_text_only`.
+This adds the CC emails to the list of recipients. By default, this is left empty.
 
-Jira
+##### `bcc`
+
+This adds the BCC emails to the list of recipients but does not show up in the email message. By default, this is left empty.
+
+##### `email_format`
+
+If set to `html`, the email's MIME type will be set to HTML, and HTML content should correctly render.
+If you use this, you need to put your own HTML into `alert_text` and use `alert_text_type: alert_text_only`.
+
+### 6.5. Jira
 
 The JIRA alerter will open a ticket on jira whenever an alert is triggered. You must have a service account for ElastAlert to connect with.
 The credentials of the service account are loaded from a separate file. The ticket number will be written to the alert pipeline, and if it
@@ -1370,7 +1426,7 @@ Example usage::
       - My Custom Value 1
       - My Custom Value 2
 
-OpsGenie
+### 6.6. OpsGenie
 
 OpsGenie alerter will create an alert which can be used to notify Operations people of issues or log information. An OpsGenie `API`
 integration must be created in order to acquire the necessary `opsgenie_key` rule variable. Currently the OpsGenieAlerter only creates
@@ -1404,7 +1460,7 @@ Optional:
 
 `opsgenie_priority`: Set the OpsGenie priority level. Possible values are P1, P2, P3, P4, P5.
 
-SNS
+### 6.7. SNS
 
 The SNS alerter will send an SNS notification. The body of the notification is formatted the same as with other alerters.
 The SNS alerter uses boto3 and can use credentials in the rule yaml, in a standard AWS credential and config files, or
@@ -1424,7 +1480,7 @@ Optional:
 
 `profile`: The AWS profile to use. If none specified, the default will be used.
 
-HipChat
+### 6.8. HipChat
 
 HipChat alerter will send a notification to a predefined HipChat room. The body of the notification is formatted the same as with other alerters.
 
@@ -1460,7 +1516,7 @@ If set, it will mention the users, no matter if the original message format is s
 Valid values: list of strings.
 Defaults to `[]`.
 
-Stride
+### 6.9. Stride
 
 Stride alerter will send a notification to a predefined Stride room. The body of the notification is formatted the same as with other alerters.
 Simple HTML such as <a> and <b> tags will be parsed into a format that Stride can consume.
@@ -1477,7 +1533,7 @@ The alerter requires the following two options:
 
 `stride_proxy`: By default ElastAlert will not use a network proxy to send notifications to Stride. Set this option using `hostname:port` if you need to use a proxy.
 
-MS Teams
+### 6.10. MS Teams
 
 MS Teams alerter will send a notification to a predefined Microsoft Teams channel.
 
@@ -1496,7 +1552,7 @@ Optional:
 
 `ms_teams_alert_fixed_width`: By default this is `False` and the notification will be sent to MS Teams as-is. Teams supports a partial Markdown implementation, which means asterisk, underscore and other characters may be interpreted as Markdown. Currenlty, Teams does not fully implement code blocks. Setting this attribute to `True` will enable line by line code blocks. It is recommended to enable this to get clearer notifications in Teams.
 
-Slack
+### 6.11. Slack
 
 Slack alerter will send a notification to a predefined Slack channel. The body of the notification is formatted the same as with other alerters.
 
@@ -1528,7 +1584,7 @@ Provide absolute address of the pciture, for example: http://some.address.com/im
 
 `slack_timeout`: You can specify a timeout value, in seconds, for making communicating with Slac. The default is 10. If a timeout occurs, the alert will be retried next time elastalert cycles.
 
-Mattermost
+### 6.12. Mattermost
 
 Mattermost alerter will send a notification to a predefined Mattermost channel. The body of the notification is formatted the same as with other alerters.
 
@@ -1556,7 +1612,7 @@ Provide absolute address of the picture (for example: http://some.address.com/im
 `mattermost_msg_fields`: You can add fields to your Mattermost alerts using this option. You can specify the title using `title` and the text value using `value`. Additionally you can specify whether this field should be a `short` field using `short: true`. If you set `args` and `value` is a formattable string, ElastAlert will format the incident key based on the provided array of fields from the rule or match.
 See https://docs.mattermost.com/developer/message-attachments.html#fields for more information.
 
-Telegram
+### 6.13. Telegram
 
 Telegram alerter will send a notification to a predefined Telegram username or channel. The body of the notification is formatted the same as with other alerters.
 
@@ -1572,7 +1628,7 @@ Optional:
 
 `telegram_proxy`: By default ElastAlert will not use a network proxy to send notifications to Telegram. Set this option using `hostname:port` if you need to use a proxy.
 
-GoogleChat
+### 6.14. GoogleChat
 
 GoogleChat alerter will send a notification to a predefined GoogleChat channel. The body of the notification is formatted the same as with other alerters.
 
@@ -1592,7 +1648,7 @@ Optional:
 
 `googlechat_footer_kibanalink`: URL to Kibana to include in the card footer. (Only used if format=card)
 
-PagerDuty
+### 6.15. PagerDuty
 
 PagerDuty alerter will trigger an incident to a predefined PagerDuty service. The body of the notification is formatted the same as with other alerters.
 
@@ -1643,7 +1699,7 @@ See https://v2.developer.pagerduty.com/docs/send-an-event-events-api-v2
 
 `pagerduty_v2_payload_source_args`: If set, and `pagerduty_v2_payload_source` is a formattable string, Elastalert will format the source based on the provided array of fields from the rule or match.
 
-Exotel
+### 6.16. Exotel
 
 Developers in India can use Exotel alerter, it will trigger an incident to a mobile phone as sms from your exophone. Alert name along with the message body will be sent as an sms.
 
@@ -1663,7 +1719,7 @@ The alerter has one optional argument:
 
 `exotel_message_body`: Message you want to send in the sms, is you don't specify this argument only the rule name is sent
 
-Twilio
+### 6.17. Twilio
 
 Twilio alerter will trigger an incident to a mobile phone as sms from your twilio phone number. Alert name will arrive as sms once this option is chosen.
 
@@ -1677,7 +1733,7 @@ The alerter requires the following option:
 
 `twilio_from_number`: Your twilio phone number from which message will be sent.
 
-VictorOps
+### 6.18. VictorOps
 
 VictorOps alerter will trigger an incident to a predefined VictorOps routing key. The body of the notification is formatted the same as with other alerters.
 
@@ -1697,7 +1753,7 @@ Optional:
 
 `victorops_proxy`: By default ElastAlert will not use a network proxy to send notifications to VictorOps. Set this option using `hostname:port` if you need to use a proxy.
 
-Gitter
+### 6.19. Gitter
 
 Gitter alerter will send a notification to a predefined Gitter channel. The body of the notification is formatted the same as with other alerters.
 
@@ -1712,7 +1768,7 @@ Optional:
 
 `gitter_proxy`: By default ElastAlert will not use a network proxy to send notifications to Gitter. Set this option using `hostname:port` if you need to use a proxy.
 
-ServiceNow
+### 6.20. ServiceNow
 
 The ServiceNow alerter will create a ne Incident in ServiceNow. The body of the notification is formatted the same as with other alerters.
 
@@ -1742,11 +1798,11 @@ Optional:
 
 `servicenow_proxy`: By default ElastAlert will not use a network proxy to send notifications to ServiceNow. Set this option using `hostname:port` if you need to use a proxy.
 
-Debug
+### 6.21. Debug
 
 The debug alerter will log the alert information using the Python logger at the info level. It is logged into a Python Logger object with the name `elastalert` that can be easily accessed using the `getLogger` command.
 
-Stomp
+### 6.22. Stomp
 
 This alert type will use the STOMP protocol in order to push a message to a broker like ActiveMQ or RabbitMQ. The message body is a JSON string containing the alert details.
 The default values will work with a pristine ActiveMQ installation.
@@ -1761,7 +1817,7 @@ Optional:
 
 The stomp_destination field depends on the broker, the /queue/ALERT example is the nomenclature used by ActiveMQ. Each broker has its own logic.
 
-Alerta
+### 6.23. Alerta
 
 Alerta alerter will post an alert in the Alerta server instance through the alert API endpoint.
 See http://alerta.readthedocs.io/en/latest/api/alert.html for more details on the Alerta JSON format.
@@ -1834,7 +1890,7 @@ Example usage using new-style format::
     alerta_attributes_values: ["{key}",    "{logdate}",     "{sender_ip}"  ]
     alerta_text:  "Probe {hostname} is UP at {logdate} GMT"
 
-HTTP POST
+### 6.24. HTTP POST
 
 This alert type will send results to a JSON endpoint using HTTP POST. The key names are configurable so this is compatible with almost any endpoint. By default, the JSON will contain all the items from the match, unless you specify http_post_payload, in which case it will only contain those items.
 
@@ -1863,7 +1919,7 @@ Example usage::
     http_post_static_payload:
       apikey: abc123
 
-Alerter
+### 6.25. Alerter
 
 For all Alerter subclasses, you may reference values from a top-level rule property in your Alerter fields by referring to the property name surrounded by dollar signs. This can be useful when you have rule-level properties that you would like to reference many times in your alert. For example:
 
@@ -1872,7 +1928,7 @@ Example usage::
     jira_priority: $priority$
     jira_alert_owner: $owner$
 
-theHive
+### 6.26. theHive
 
 theHive alert type will send JSON request to theHive (Security Incident Response Platform) with TheHive4py API. Sent request will be stored like Hive Alert with description and observables.
 
