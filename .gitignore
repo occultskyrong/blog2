@@ -28,3 +28,4 @@ public/
 # temp file
 Thumbs.db
 db.json
+/config/_secretKey.js
