@@ -44,6 +44,12 @@ const setPassword = (text, salt) => new Promise((resolve, reject) => {
 });
 
 /**
+ * 生成md5值
+ * @param str
+ */
+const md5 = str => crypto.createHash('md5').update(str).digest('hex');
+
+/**
  * 生成随机盐和随机密码
  * @param {string} text 明文
  * @param {int} size 盐长度
@@ -63,5 +69,6 @@ const getPassword = (text, size = 32) => new Promise((resolve, reject) => {
 module.exports = {
   getSalt, // 生成随机盐
   getPassword, // 生成随机盐和密文
+  md5, // 生成md5值
   setPassword, // 生成随机密码
 };
