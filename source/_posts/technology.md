@@ -311,6 +311,8 @@ git push
 
 ### 6.1. Docker
 
+#### docker命令
+
 > [Docker run 命令 | 菜鸟教程](http://www.runoob.com/docker/docker-run-command.html)
 
 ```shell
@@ -333,6 +335,35 @@ docker exec -it mongodb mongo admin
 docker ps
 ## 查看所有镜像
 docker ps -a
+```
+
+#### docker mysql
+
+- 安装并运行mysql
+
+```shell
+docker search mysql
+# 下载mysql镜像
+docker pull mysql
+# 后台运行mysql，并映射端口到主机
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql
+```
+
+- 登录mysql更新配置
+
+```shell
+# 进入mysql所在docker
+docker exec -it mysql bash
+# 连接mysql客户端
+mysql -uroot -h 127.0.0.1 -p
+# >> 输入密码root
+# 切换数据库
+mysql> USE mysql;
+# 查看当前权限
+mysql> SELECT host,user,plugin,authentication_string FROM mysql.user;
+# 修改远程访问权限和密码
+mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
+mysql> FLUSH PRIVILEGES;
 ```
 
 ### 6.2. 单元测试
