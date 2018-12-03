@@ -45,7 +45,7 @@
     - 具体有关国家的说明参见 » [百度百科 - 国家][]
     - 具体有关地区的说明参见 » [百度百科 - 地区][]
 - 主权国家（截至2017年），共计198个
-    - 联合国会员国：193个
+    - 联合国会员国：193个，具体名单参见 [United Nations » Member States][]
     - 联合国观察员国：2个，即梵蒂冈、巴勒斯坦
     - 国际普遍承认：3个，即纽埃，库克群岛，马耳他骑士团
 - 地区，37个
@@ -61,6 +61,7 @@
 
 [百度百科 - 国家]: https://baike.baidu.com/item/%E5%9B%BD%E5%AE%B6/17205
 [百度百科 - 地区]: https://baike.baidu.com/item/%E5%9C%B0%E5%8C%BA/13841495#viewPageContent
+[United Nations » Member States]: http://www.un.org/en/member-states/index.html
 [坐标系说明书]: http://lbsyun.baidu.com/index.php?title=coordinate
 
 ## 4. 原说明
