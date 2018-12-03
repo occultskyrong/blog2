@@ -9,25 +9,20 @@
 ### 命令
 
 ```shell
-## 下载项目
+# 下载项目及子模块
 git clone --recurse-submodules https://github.com/occultskyrong/blog2.git
-
-## 安装依赖
-cnpm i
-
-## 安装hexo的cli
+# 安装依赖
+npm i
+# 安装hexo的cli
 sudo npm install hexo-cli -g
-
-## 安装theme-next
-git clone https://github.com/theme-next/hexo-theme-next themes/next
-
-## 启动服务
+# 启动服务
 hexo server
-
-## 使用pm2守护
+# 或 - 使用pm2守护
 pm2 start package.json --name blog2
 
-## 新增文章
+# 新增theme-next到子模块
+git submodule add https://github.com/theme-next/hexo-theme-next themes/next
+# 新增文章
 hexo new <title>
 ```
 
@@ -43,6 +38,43 @@ hexo new <title>
 
 ### 项目结构
 
+```shell
+tree -a -L 2 -I "node_modules|.git*|.vscode"
+```
+
 ```tree
-// TODO:使用tree命令获取目录树
+.
+├── .eslintrc.json
+├── .markdownlint.json
+├── LICENSE
+├── README.md
+├── _config.yml
+├── bin
+│   └── hexo.sh
+├── code
+│   ├── common
+│   ├── countries
+│   ├── memory-leak
+│   ├── node-events
+│   └── package.json
+├── config
+│   ├── _secretKey.js
+│   ├── development.js
+│   ├── index.js
+│   └── secretKey.js
+├── db.json
+├── package-lock.json
+├── package.json
+├── scaffolds
+│   ├── draft.md
+│   ├── page.md
+│   └── post.md
+├── source
+│   └── _posts
+├── themes
+│   ├── landscape
+│   └── next
+└── yarn.lock
+
+13 directories, 18 files
 ```
