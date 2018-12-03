@@ -3,8 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const Promise = require('bluebird');
 
-const unCountriesChinese = require('./raw/_un_countries_chinese');
-const unCountriesEnglish = require('./raw/_un_countries_english');
+const unCountries = require('./raw/_un_countries');
 const { translateEn2Zh } = require('../common/baidu/fanyi');
 // const { features } = require('./raw/_countries_1');
 const { features } = require('./raw/_countries_2');
@@ -19,6 +18,8 @@ async function setCountryInfo(country) {
   if (country === undefined) { throw new Error('未获取到国家数据'); }
   let name_chinese;
   let name_chinese_abbreviation;
+  let name_chinese_UN;
+  let name_english_UN;
   const { properties } = country;
   const name_english_abbreviation = properties.NAME_SORT;
   const name_english_formal = properties.FORMAL_EN;
@@ -31,7 +32,14 @@ async function setCountryInfo(country) {
   } else if (name_english_abbreviation) {
     name_chinese_abbreviation = await translateEn2Zh(name_english_abbreviation);
   }
-  return {
+  if (name_english_formal in unCountries) {
+    name_english_UN = name_english_formal;
+    name_chinese_UN = unCountries[name_english_UN];
+  } else if (name_english_abbreviation in unCountries) {
+    name_english_UN = name_english_abbreviation;
+    name_chinese_UN = unCountries[name_english_UN];
+  }
+  const result = {
     // capital_name_chinese: '首都中文名称',
     // capital_name_english: '首都英文名称',
     // capital_point: '首都中心坐标点',
@@ -40,11 +48,11 @@ async function setCountryInfo(country) {
     country_type: properties.TYPE,
     name_chinese,
     name_chinese_abbreviation,
-    name_chinese_UN: '', // 联合国用中文名
+    name_chinese_UN, // 联合国用中文名
     name_english_abbreviation,
     name_english_formal,
     name_english_short,
-    name_english_UN: '', // 联合国用英文名
+    name_english_UN, // 联合国用英文名
     // political_institutions: '政治制度',
     continent: properties.CONTINENT,
     subregion: properties.SUBREGION,
@@ -52,11 +60,13 @@ async function setCountryInfo(country) {
     // geometry_type: '几何形状',
     // geometry_points: '国界坐标点',
   };
+  console.info(result);
+  return result;
 }
 
 async function run() {
   const sovereignCountry = features.filter(c => c.properties.TYPE === 'Sovereign country');
-  const results = await Promise.map(sovereignCountry, (country, index, length) => {
+  const results = await Promise.map(sovereignCountry.slice(1, 10), (country, index, length) => {
     console.info(`-- 处理第 ${index}/${length} 个数据`);
     return setCountryInfo(country);
   }, { concurrency: 5 });
