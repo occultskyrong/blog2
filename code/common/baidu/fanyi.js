@@ -1,4 +1,7 @@
-// 从百度云获取翻译结果
+/**
+ * 从百度云获取翻译结果
+ * @see https://fanyi-api.baidu.com/api/trans/product/apidoc
+ */
 
 const request = require('request-promise');
 
@@ -14,6 +17,7 @@ const { md5 } = require('../crypto');
  * @param {*} q 需要翻译的词
  */
 async function translateEn2Zh(q) {
+  if (!q) { throw new Error('未获取到原文'); }
   const salt = new Date().getTime();
   const sign = md5(`${appId}${q}${salt}${secretKey}`);
   const form = {
@@ -28,8 +32,15 @@ async function translateEn2Zh(q) {
     form,
     method: 'POST',
     uri: baseUri,
+    json: true, // 返回值使用json解析
   });
-  return decodeURI(result);
+  const { trans_result: results } = result;
+  if (results && results instanceof Array && results.length > 0) {
+    console.debug(results);
+    return results[0].dst;
+  }
+  console.error(new Error('翻译失败'), result, form);
+  return '';
 }
 
 module.exports = {

@@ -9,6 +9,8 @@
     }
   },
   "dependencies": {
+    "bluebird": "^3.5.3",
+    "cheerio": "^1.0.0-rc.2",
     "easy-monitor": "^2.2.6-rc.0",
     "hexo": "^3.7.0",
     "hexo-generator-archive": "^0.1.5",
@@ -40,8 +42,8 @@
     "type": "git",
     "url": "git+https://github.com/occultskyrong/blog2.git"
   },
-  "script": "./bin/hexo.sh",
   "scripts": {
+    "start": "node ./bin/hexo.sh",
     "test": "jest"
   },
   "version": "2.0.0"
