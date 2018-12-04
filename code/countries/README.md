@@ -13,9 +13,8 @@
     - [3.2. 政治相关](#32-政治相关)
     - [3.3. 数据修正](#33-数据修正)
     - [3.4. 数据结构](#34-数据结构)
-- [4. 原说明](#4-原说明)
-- [5. 目录结构](#5-目录结构)
-- [6. 运行](#6-运行)
+- [4. 目录结构](#4-目录结构)
+- [5. 运行](#5-运行)
 
 <!-- /TOC -->
 
@@ -32,6 +31,8 @@
 > - [Highmaps 地图数据集](https://img.hcharts.cn/mapdata/)
 > - [【 地图系列 】 世界地图和主要国家的 JSON 文件](http://www.ourd3js.com/wordpress/668/)
 > - [GitHub - pissang/starbucks](https://github.com/pissang/starbucks)
+> - [World Capital Cities](https://geographyfieldwork.com/WorldCapitalCities.htm)
+> - [Wiki - List of national capitals](https://en.wikipedia.org/wiki/List_of_national_capitals)
 
 ## 3. 说明
 
@@ -41,6 +42,7 @@
 
 ### 3.2. 政治相关
 
+- 不涉及政治区域的划分和地区与国家的讨论，及各种纠纷
 - 仅处理被“中华人民共和国”承认的主权国家和地区
     - 具体有关国家的说明参见 » [百度百科 - 国家][]
     - 具体有关地区的说明参见 » [百度百科 - 地区][]
@@ -63,25 +65,13 @@
 [United Nations » Member States]: http://www.un.org/en/member-states/index.html
 [坐标系说明书]: http://lbsyun.baidu.com/index.php?title=coordinate
 
-## 4. 原说明
-
-- 共计`174`个国家或地区的数据，如有缺失，请自行添加
-- 政治相关
-    - 国家英文名称，按照`world-map`中`name`字段为准，部分国家为展示，部分缩写
-        - 如`Republic` 缩写为`Rep.`
-        - `United States of America`改为`United States`
-    - 国家英文名称，全称见`world-map`中`formal_en`字段
-    - 不涉及政治区域的划分和地区与国家的讨论，及各种纠纷
-        - 已删除“中华人民共和国台湾省”数据，需要者自行添加
-        - `world-map`中国家，缺少`Côte d'Ivoire`及`Palestine`对应的国家中心点及中英文对照，需要者自行添加
-
-## 5. 目录结构
+## 4. 目录结构
 
 ```tree
 
 ```
 
-## 6. 运行
+## 5. 运行
 
 ```shell
 # 使用sequelize-auto导出model

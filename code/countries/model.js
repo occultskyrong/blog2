@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const Sequelize = require('sequelize');
 
 const { mysql } = require('../../config');
@@ -16,7 +17,7 @@ const sequelize = new Sequelize(mysql.database, mysql.username, mysql.password, 
   },
   timezone: '+08:00', // for writing to database
   operatorsAliases: false,
-  logging: 'logging' in mysql ? mysql.logging : console.log,
+  logging: 'logging' in mysql ? mysql.logging : console.info,
   define: {
     underscored: true, // 字段以 true:下划线（_）来分割
     freezeTableName: true, // 锁定表名
@@ -30,6 +31,11 @@ const sequelize = new Sequelize(mysql.database, mysql.username, mysql.password, 
 
 const Countries = countries(sequelize, Sequelize.DataTypes);
 
+async function findOne(query) {
+  const result = await Countries.findOne(query);
+  return result;
+}
+
 /**
  * 查询 - 所有数据
  * @param {*} query 查询语句
@@ -39,6 +45,23 @@ async function findAll(query) {
   return results;
 }
 
+/**
+ * 同步：新增或更新数据
+ * @param {object} country 国家数据
+ */
+async function sync(country) {
+  const { name_english_formal } = country;
+  const result = await Countries.findOne({ where: { name_english_formal }, attributes: ['id'] });
+  if (result) {
+    await result.update(country);
+  } else {
+    console.info(country);
+    await Countries.create(country);
+  }
+}
+
 module.exports = {
+  findOne,
   findAll,
+  sync,
 };
