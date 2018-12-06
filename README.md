@@ -56,7 +56,6 @@ tree -a -L 2 -I "node_modules|.git*|.vscode"
 │   ├── countries
 │   ├── memory-leak
 │   ├── node-events
-│   └── package.json
 ├── config
 │   ├── _secretKey.js
 │   ├── development.js
@@ -76,5 +75,4 @@ tree -a -L 2 -I "node_modules|.git*|.vscode"
 │   └── next
 └── yarn.lock
 
-13 directories, 18 files
 ```
