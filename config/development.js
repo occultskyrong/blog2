@@ -1,4 +1,8 @@
 module.exports = {
+  mongodb: {
+    host: 'localhost',
+    port: '27017',
+  },
   mysql: {
     database: 'test',
     dialect: 'mysql',
