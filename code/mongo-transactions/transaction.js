@@ -246,7 +246,7 @@ async function transacion(caseItem, index) {
  */
 async function concurrent() {
   println('  -- 开始处理事务内容');
-  await Promise.map(queueList, transacion, { concurrency: 10 });
+  await Promise.map(queueList, transacion, { concurrency: 100 });
   println('  -- 事务处理完毕');
 }
 
