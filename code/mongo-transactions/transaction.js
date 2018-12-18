@@ -2,6 +2,7 @@
 const assert = require('assert');
 const Promise = require('bluebird');
 const fs = require('fs');
+const moment = require('moment');
 const mongoose = require('mongoose');
 const path = require('path');
 
@@ -10,7 +11,15 @@ const println = console.info;
 
 const { mongodb } = require('../../config');
 
-mongoose.connect(`mongodb://${mongodb.host}:${mongodb.port}/transaction`, { useNewUrlParser: true });
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+mongoose.connect(`mongodb://${mongodb.host}:${mongodb.port}/transaction`, {
+  useNewUrlParser: true,
+  poolSize: 10,
+});
+
+// 输出日志
+// mongoose.set('debug', true);
 
 const { Schema } = mongoose;
 const db = mongoose.connection;
@@ -111,7 +120,38 @@ const queueList = [{ // A修改名称
     finance: { query: { cardId: 2 }, result: { balance: 256 } },
     financeHistory: { query: { cardId: 2 }, result: { original: 0, settlement: 256 } },
   },
+}, { // 修改不存在名称、D充值128
+  update: {
+    customer: { query: { cardId: 12 }, update: { name: 'A-' } },
+    finance: { query: { cardId: 4 }, update: { $inc: { balance: 128 } } },
+  },
+  result: {
+    customer: { query: { cardId: 1 }, result: { name: 'A-' } },
+    finance: { query: { cardId: 4 }, result: { balance: 100 } },
+  },
+}, { // D充值12
+  update: {
+    finance: { query: { cardId: 4 }, update: { $inc: { balance: 12 } } },
+  },
+  result: {
+    finance: { query: { cardId: 4 }, result: { balance: 112 } },
+  },
+}, { // D消费11
+  update: {
+    finance: { query: { cardId: 4 }, update: { $inc: { balance: -11 } } },
+  },
+  result: {
+    finance: { query: { cardId: 4 }, result: { balance: 101 } },
+  },
 }];
+
+// 伪造100个修改不存在名称，来测试并发
+// for (let i = 0; i < 100; i += 1) {
+//   queueList.push({ // 修改不存在名称
+//     update: { customer: { query: { cardId: 5 }, update: { name: 'E' } } },
+//     result: { customer: { query: { cardId: 1 }, result: { cardId: 1, name: 'A1' } } },
+//   });
+// }
 
 /**
  * 数据校验
@@ -153,10 +193,10 @@ async function data() {
       customersList[cardId].balance = balance;
     }
   });
-  println(' | cardId | name | balance\t | ');
+  print(' | cardId | name | balance\t | ');
   Object.keys(customersList).forEach((cardId) => {
     const { balance, name } = customersList[cardId];
-    println(` | ${cardId}\t  | ${name}\t | ${balance}\t\t | `);
+    print(` | ${cardId}\t  | ${name}\t | ${balance}\t\t | `);
   });
 }
 
@@ -172,26 +212,33 @@ async function transacion(caseItem, index) {
   let session;
   try {
     session = await db.startSession();
+    await sleep(1000);
     // 开始事务
     await session.startTransaction();
     // 更新数据
-    if (customer) {
-      await Customer.updateOne(customer.query, customer.update, { session });
-    }
     if (finance) {
       await Finance.updateOne(finance.query, finance.update, { session });
+      // await Finance.updateOne(finance.query, finance.update);
     }
     if (financeHistory) {
       await FinanceHistory.create(financeHistory, { session });
     }
+    if (customer) {
+      const { query, update } = customer;
+      await Customer.updateOne(query, update, { session });
+      // const customerResult = await Customer.findOne(query).session(session);
+      // if (!customerResult || customerResult.name !== update.name) {
+      //   throw new Error('修改name失败');
+      // }
+    }
+    // 结束事务
+    await session.commitTransaction();
+    await check(indexStr, result, session);
+    println(`    ${indexStr} √ 原子事务执行完成`);
   } catch (e) {
-    await session.abortTransaction();
-    throw e;
+    await session.abortTransaction(); // 显式回退
+    console.error('ERROR:', indexStr, JSON.stringify(caseItem.update), e.message);
   }
-  // 结束事务
-  await session.commitTransaction();
-  await check(indexStr, result, session);
-  println(`    ${indexStr} √ 原子事务执行完成`);
 }
 
 /**
@@ -199,7 +246,7 @@ async function transacion(caseItem, index) {
  */
 async function concurrent() {
   println('  -- 开始处理事务内容');
-  await Promise.map(queueList, transacion);
+  await Promise.map(queueList, transacion, { concurrency: 10 });
   println('  -- 事务处理完毕');
 }
 
