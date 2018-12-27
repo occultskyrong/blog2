@@ -34,6 +34,8 @@ tags:
 - [4. 基础知识](#4-基础知识)
     - [4.1. 数据处理](#41-数据处理)
         - [4.1.1. MapReduce](#411-mapreduce)
+    - [4.2. 架构](#42-架构)
+        - [4.2.1. Remote Procedure Calls](#421-remote-procedure-calls)
 - [5. 工具或架构](#5-工具或架构)
     - [5.1. ZooKeeper](#51-zookeeper)
     - [5.2. K8S](#52-k8s)
@@ -50,6 +52,8 @@ tags:
     - [5.7. Maven](#57-maven)
 - [6. 工程化](#6-工程化)
     - [6.1. Docker](#61-docker)
+        - [6.1.1. docker命令](#611-docker命令)
+        - [6.1.2. docker mysql](#612-docker-mysql)
     - [6.2. 单元测试](#62-单元测试)
         - [6.2.1. Mocha](#621-mocha)
         - [6.2.2. Jest](#622-jest)
@@ -66,6 +70,7 @@ tags:
         - [8.1.1. 锁机制](#811-锁机制)
     - [8.2. Mongo](#82-mongo)
         - [8.2.1. MongoDB](#821-mongodb)
+            - [8.2.1.1. ObjectId Generator](#8211-objectid-generator)
         - [8.2.2. Mongoose](#822-mongoose)
             - [8.2.2.1. `Schema`](#8221-schema)
             - [8.2.2.2. `find`](#8222-find)
@@ -189,6 +194,10 @@ alias ipget="ipconfig getifaddr en0"
 >
 > [[翻译]MapReduce: Simplified Data Processing on Large Clusters](https://www.cnblogs.com/fuzhe1989/p/3413457.html)
 
+### 4.2. 架构
+
+#### 4.2.1. Remote Procedure Calls
+
 ## 5. 工具或架构
 
 ### 5.1. ZooKeeper
@@ -311,7 +320,7 @@ git push
 
 ### 6.1. Docker
 
-#### docker命令
+#### 6.1.1. docker命令
 
 > [Docker run 命令 | 菜鸟教程](http://www.runoob.com/docker/docker-run-command.html)
 
@@ -337,7 +346,7 @@ docker ps
 docker ps -a
 ```
 
-#### docker mysql
+#### 6.1.2. docker mysql
 
 - 安装并运行mysql
 
@@ -425,6 +434,10 @@ mysql> FLUSH PRIVILEGES;
 ### 8.2. Mongo
 
 #### 8.2.1. MongoDB
+
+##### 8.2.1.1. ObjectId Generator
+
+> [Generating Globally Unique Identifiers for Use with MongoDB](https://www.mongodb.com/blog/post/generating-globally-unique-identifiers-for-use-with-mongodb)
 
 #### 8.2.2. Mongoose
 
