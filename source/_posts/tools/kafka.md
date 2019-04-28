@@ -15,6 +15,8 @@
     - [3.4. 启动容器](#34-启动容器)
 - [4. 管理平台](#4-管理平台)
 - [5. 测试](#5-测试)
+    - [5.1. 测试发送消息](#51-测试发送消息)
+    - [5.2. 删除topic](#52-删除topic)
 
 <!-- /TOC -->
 
@@ -22,6 +24,8 @@
 
 ## 2. 参考文献
 
+> [使用docker安装kafka](https://blog.csdn.net/lblblblblzdx/article/details/80548294)
+>
 > [基于docker部署的微服务架构（五）： docker环境下的zookeeper和kafka部署](https://my.oschina.net/lhztt/blog/791664)
 >
 > [在Docker环境下部署Kafka](https://blog.csdn.net/snowcity1231/article/details/54946857)
@@ -29,6 +33,8 @@
 > [Kafka shell 基本命令](https://blog.csdn.net/Dean_WangHW/article/details/53606193)
 >
 > [kafka 创建消费者报错 consumer zookeeper is not a recognized option](https://blog.csdn.net/csdn_sunlighting/article/details/81516646)
+>
+> [kafka如何彻底删除topic及数据](https://blog.csdn.net/belalds/article/details/80575751)
 
 ## 3. 步骤
 
@@ -93,7 +99,7 @@ docker run -d \
 -p 9092:9092 \
 -e KAFKA_BROKER_ID=0 \
 -e KAFKA_ZOOKEEPER_CONNECT=192.168.100.110:2181 \
--e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.100.121:9092 \
+-e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.0.125:9092 \
 -e KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 \
 -t wurstmeister/kafka
 ```
@@ -104,6 +110,8 @@ docker run -d \
 
 ## 5. 测试
 
+### 5.1. 测试发送消息
+
 ```shell
 # 进入容器
 docker exec -it kafka bash
@@ -113,14 +121,38 @@ echo $KAFKA_HOME
 cd /opt/kafka
 
 # 创建 topic
-./bin/kafka-topics.sh --create --zookeeper 192.168.100.110:2181 --replication-factor 1 --partitions 1 --topic test
+/opt/kafka/bin/kafka-topics.sh --create --zookeeper 192.168.100.110:2181 --replication-factor 1 --partitions 1 --topic test
 
 # 查看当前的 topic列表
-bin/kafka-topics.sh --list --zookeeper 192.168.100.110:2181
+/opt/kafka/bin/kafka-topics.sh --list --zookeeper 192.168.100.110:2181
 
 # 运行一个生产者，指定创建的 topic
-bin/kafka-console-producer.sh --broker-list 192.168.100.121:9092 --topic test
+/opt/kafka/bin/kafka-console-producer.sh --broker-list 192.168.100.121:9092 --topic test
 
 # 运行一个消费者，指定同样 topic
-bin/kafka-console-consumer.sh --bootstrap-server 192.168.100.121:9092 --topic test --from-beginning
+/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server 192.168.100.121:9092 --topic test --from-beginning
+```
+
+### 5.2. 删除topic
+
+```shell
+# 进入 kafka 容器
+docket exec -it kafka bash
+# 软删除 topic
+/opt/kafka/bin/kafka-topics.sh --delete --zookeeper 192.168.100.110:2181 --topic test
+# 查看数据目录地址，在 server.properties 中找 log.dirs 地址
+vi /opt/kafka/config/server.properties
+# 删除上一步路径的目录内容
+rm -rf /kafka/kafka-logs-45d81ee7f812/test-0
+# 此时已经删除对应数据
+
+# 进入 zookeeper 容器
+docker exec -it zk bash
+# 连接到zk服务器
+bin/zkCli.sh -server 192.168.100.110:2181
+# 查看所有 topic
+ls /brokers/topics
+# 删除对应 topic
+rmr /brokers/topics/test
+# 此时已删除zk中对应topic数据
 ```

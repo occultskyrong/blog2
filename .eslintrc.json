@@ -2,22 +2,24 @@
   "env": {
     "node": true,
     "es6": true,
-    "browser": true,
-    "jquery": true
+    "jest": true
   },
-  "globals": {
-    "GLO": true
-  },
+  "globals": {},
   "extends": "airbnb-base",
   "parserOptions": {
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true
-    },
     "sourceType": "module",
     "ecmaVersion": 2017
   },
   "rules": {
+    "camelcase": "warn",
+    "class-methods-use-this": "off",
     "indent": [1, 2],
-    "max-len": [2, 120]
+    "max-len": [2, 150],
+    "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 5 }],
+    "no-mixed-operators": "warn",
+    "no-param-reassign": "warn",
+    "no-underscore-dangle": "warn",
+    "object-curly-newline": ["error", { "minProperties": 6, "multiline": true }],
+    "no-unused-vars": "warn"
   }
 }
