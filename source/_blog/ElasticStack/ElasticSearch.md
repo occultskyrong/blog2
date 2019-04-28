@@ -1,83 +1,84 @@
 # ElasticSearch
 
-# 目录
+## 1. 目录
 
 <!-- TOC depthFrom:2 depthTo:5 -->
 
-- [1. 概述](#1-概述)
-  - [1.1. 环境说明](#11-环境说明)
-  - [1.2. 认知与说明](#12-认知与说明)
-    - [1.2.1. `ElasticSearch`与`Elastic Stack`](#121-elasticsearch与elastic-stack)
-    - [1.2.2. 我在干什么？](#122-我在干什么)
-    - [1.2.3. 其他](#123-其他)
-  - [1.3. 中英文对照](#13-中英文对照)
-  - [1.4. 特性](#14-特性)
-- [2. 集群](#2-集群)
-  - [2.1. 集群](#21-集群)
-  - [2.2. 节点](#22-节点)
-  - [2.3. 内存管理](#23-内存管理)
-    - [2.3.1. 堆内存，Heap Memory](#231-堆内存heap-memory)
-      - [2.3.1.1. 大小和交换](#2311-大小和交换)
-      - [2.3.1.2. 分类](#2312-分类)
-    - [2.3.2. 非堆内存](#232-非堆内存)
-    - [2.3.3. 参考文章](#233-参考文章)
-  - [2.4. 高可用](#24-高可用)
-  - [2.5. 客户端](#25-客户端)
-- [3. `API`](#3-api)
-  - [3.1. 通用信息](#31-通用信息)
-    - [3.1.1. 参数列表](#311-参数列表)
-      - [3.1.1.1. 通用配置](#3111-通用配置)
-  - [3.2. `cat APIs`](#32-cat-apis)
-    - [3.2.1. 通用参数](#321-通用参数)
-  - [3.3. `cat nodes`](#33-cat-nodes)
-    - [3.3.1. `Columns`](#331-columns)
-  - [3.4. `Indices APIs`](#34-indices-apis)
-  - [3.5. `Document APIs`](#35-document-apis)
-    - [3.5.1. `reindex`](#351-reindex)
-  - [3.6. `Search APIs`](#36-search-apis)
-- [4. 数据结构](#4-数据结构)
-  - [4.1. `Index`](#41-index)
-    - [4.1.1. 原理](#411-原理)
-    - [4.1.2. `alias`](#412-alias)
-    - [4.1.3. `setting`](#413-setting)
-  - [4.2. `Mapping`](#42-mapping)
-    - [4.2.1. `type`](#421-type)
-    - [4.2.2. `Field datatypes`](#422-field-datatypes)
-  - [4.3. `Meta-Fields`](#43-meta-fields)
-  - [4.4. `Mapping parameters`](#44-mapping-parameters)
-  - [4.5. `Analysis`](#45-analysis)
-- [5. 数据查询与聚合](#5-数据查询与聚合)
-  - [5.1. `Query DSL`](#51-query-dsl)
-  - [5.2. `Search`](#52-search)
-    - [5.2.1. `score`](#521-score)
-    - [5.2.2. `match`与`term`](#522-match与term)
-    - [5.2.3. `from`+`size`](#523-fromsize)
-    - [5.2.4. `Highlighting`](#524-highlighting)
-  - [5.3. `Query`](#53-query)
-    - [5.3.1. `scroll query`](#531-scroll-query)
-    - [5.3.2. `geo queries`](#532-geo-queries)
-  - [5.4. `Suggesters`](#54-suggesters)
-  - [5.5. `Aggregates`](#55-aggregates)
-- [6. 解决方案](#6-解决方案)
-  - [6.1. 工具](#61-工具)
-    - [6.1.1. 数据同步](#611-数据同步)
-      - [6.1.1.1. `MongoDB-to-ES`](#6111-mongodb-to-es)
-    - [6.1.2. 基准测试](#612-基准测试)
-      - [6.1.2.1. `esrally`](#6121-esrally)
-- [7. 参考文献](#7-参考文献)
+- [1. 目录](#1-目录)
+- [2. 概述](#2-概述)
+  - [2.1. 环境说明](#21-环境说明)
+  - [2.2. 认知与说明](#22-认知与说明)
+    - [2.2.1. `ElasticSearch`与`Elastic Stack`](#221-elasticsearch与elastic-stack)
+    - [2.2.2. 我在干什么？](#222-我在干什么)
+    - [2.2.3. 其他](#223-其他)
+  - [2.3. 中英文对照](#23-中英文对照)
+  - [2.4. 特性](#24-特性)
+- [3. 集群](#3-集群)
+  - [3.1. 集群](#31-集群)
+  - [3.2. 节点](#32-节点)
+  - [3.3. 内存管理](#33-内存管理)
+    - [3.3.1. 堆内存，Heap Memory](#331-堆内存heap-memory)
+      - [3.3.1.1. 大小和交换](#3311-大小和交换)
+      - [3.3.1.2. 分类](#3312-分类)
+    - [3.3.2. 非堆内存](#332-非堆内存)
+    - [3.3.3. 参考文章](#333-参考文章)
+  - [3.4. 高可用](#34-高可用)
+  - [3.5. 客户端](#35-客户端)
+- [4. `API`](#4-api)
+  - [4.1. 通用信息](#41-通用信息)
+    - [4.1.1. 参数列表](#411-参数列表)
+      - [4.1.1.1. 通用配置](#4111-通用配置)
+  - [4.2. `cat APIs`](#42-cat-apis)
+    - [4.2.1. 通用参数](#421-通用参数)
+  - [4.3. `cat nodes`](#43-cat-nodes)
+    - [4.3.1. `Columns`](#431-columns)
+  - [4.4. `Indices APIs`](#44-indices-apis)
+  - [4.5. `Document APIs`](#45-document-apis)
+    - [4.5.1. `reindex`](#451-reindex)
+  - [4.6. `Search APIs`](#46-search-apis)
+- [5. 数据结构](#5-数据结构)
+  - [5.1. `Index`](#51-index)
+    - [5.1.1. 原理](#511-原理)
+    - [5.1.2. `alias`](#512-alias)
+    - [5.1.3. `setting`](#513-setting)
+  - [5.2. `Mapping`](#52-mapping)
+    - [5.2.1. `type`](#521-type)
+    - [5.2.2. `Field datatypes`](#522-field-datatypes)
+  - [5.3. `Meta-Fields`](#53-meta-fields)
+  - [5.4. `Mapping parameters`](#54-mapping-parameters)
+  - [5.5. `Analysis`](#55-analysis)
+- [6. 数据查询与聚合](#6-数据查询与聚合)
+  - [6.1. `Query DSL`](#61-query-dsl)
+  - [6.2. `Search`](#62-search)
+    - [6.2.1. `score`](#621-score)
+    - [6.2.2. `match`与`term`](#622-match与term)
+    - [6.2.3. `from`+`size`](#623-fromsize)
+    - [6.2.4. `Highlighting`](#624-highlighting)
+  - [6.3. `Query`](#63-query)
+    - [6.3.1. `scroll query`](#631-scroll-query)
+    - [6.3.2. `geo queries`](#632-geo-queries)
+  - [6.4. `Suggesters`](#64-suggesters)
+  - [6.5. `Aggregates`](#65-aggregates)
+- [7. 解决方案](#7-解决方案)
+  - [7.1. 工具](#71-工具)
+    - [7.1.1. 数据同步](#711-数据同步)
+      - [7.1.1.1. `MongoDB-to-ES`](#7111-mongodb-to-es)
+    - [7.1.2. 基准测试](#712-基准测试)
+      - [7.1.2.1. `esrally`](#7121-esrally)
+- [8. 参考文献](#8-参考文献)
 
 <!-- /TOC -->
 
-## 1. 概述
+## 2. 概述
 
-### 1.1. 环境说明
+### 2.1. 环境说明
 
 - 系统环境以`CentOS 7.x`为主
 - `ES_HOME` 即为 `ElasticSearch` 的安装目录
 
-### 1.2. 认知与说明
+### 2.2. 认知与说明
 
-#### 1.2.1. `ElasticSearch`与`Elastic Stack`
+#### 2.2.1. `ElasticSearch`与`Elastic Stack`
 
 `Elastic Stack` 主要包括 `ElasticSearch`、`Logstash`、`Kibana`、`Beats`等产品。具体的产品矩阵，见[Products][] 。
 
@@ -97,53 +98,53 @@
 
 支持但不限于：数据存储、全文检索、数据查询与聚合、LBS查询。
 
-#### 1.2.2. 我在干什么？
+#### 2.2.2. 我在干什么？
 
 市面上有大量的ES相关的介绍和权威指南的翻译，本着来源第一手资源的目的，记录实际应用中遇到各个知识点。整理自己对ES整个体系的认知。能够帮助其他人是更好的。
 这不是权威指南，只是一个人个人认知的整理文档。
 
-#### 1.2.3. 其他
+#### 2.2.3. 其他
 
 - 语言：尽可能使用中文说明，部分英文单词在翻译成中文无法有效表述其原始含义的，保留原英文表述
 
-### 1.3. 中英文对照
+### 2.3. 中英文对照
 
 | 英文     | 复数      | 中文翻译 | 说明                                                         |
 | -------- | --------- | -------- | ------------------------------------------------------------ |
 | document | documents | 文档     | 又docs，ES中最基础的单元化数据结构，类似于数据库中`行`的概念 |
 | index    | indices   | 索引     | ES中结构化数据组织形式，类似与数据库中`表`的概念             |
 
-### 1.4. 特性
+### 2.4. 特性
 
 `ElasticSearch`异于其他`DB`的特征，难以评价、分辨这些特征是优点、亦或是缺点。
 
 - 版本
 
-## 2. 集群
+## 3. 集群
 
 > [基础概念][Basic Concepts]
 
-### 2.1. 集群
+### 3.1. 集群
 
 - 集群安装与配置
-    - [集群安装说明][]
-    - 集群发现与治理
-    - 集群内通信端口
-    - 集群对外通信端口
-    - 资源分配（内存分配、JVM版本）
-    - 版本升级
-    - `x-pack` 授权与安装
+  - [集群安装说明][]
+  - 集群发现与治理
+  - 集群内通信端口
+  - 集群对外通信端口
+  - 资源分配（内存分配、JVM版本）
+  - 版本升级
+  - `x-pack` 授权与安装
 
-### 2.2. 节点
+### 3.2. 节点
 
 - 节点类型与数量
-    - [Elasticsearch » Modules » Node][]
-    - *master脑裂*
-    > - [Elasticsearch集群的脑裂问题](http://blog.csdn.net/cnweike/article/details/39083089)
-    > - [关于Elasticsearch集群脑裂brain-split的预防与解决](http://blog.csdn.net/wuyzhen_csdn/article/details/73744233)
-    - master 功能与资源配置
+  - [Elasticsearch » Modules » Node][]
+  - *master脑裂*
+  > - [Elasticsearch集群的脑裂问题](http://blog.csdn.net/cnweike/article/details/39083089)
+  > - [关于Elasticsearch集群脑裂brain-split的预防与解决](http://blog.csdn.net/wuyzhen_csdn/article/details/73744233)
+  - master 功能与资源配置
 
-### 2.3. 内存管理
+### 3.3. 内存管理
 
 由于 ElasticSearch 是一个基于 Lucene 的 Java 开发的应用 ，所以内存占用分为两部分。
 一部分是由JVM管理的堆内存，另一部分为Lucene管理的非堆内存。
@@ -160,9 +161,9 @@
 >
 > 如果你不需要对分词字符串做聚合计算（例如，不需要 fielddata ）可以考虑降低堆内存。堆内存越小，Elasticsearch（更快的 GC）和 Lucene（更多的内存用于缓存）的性能越好。
 
-#### 2.3.1. 堆内存，Heap Memory
+#### 3.3.1. 堆内存，Heap Memory
 
-##### 2.3.1.1. 大小和交换
+##### 3.3.1.1. 大小和交换
 
 - 堆内存大小设置的原则
     - 默认1G，不够用，建议加大
@@ -188,7 +189,7 @@ top
 ## Swap栏
 ```
 
-##### 2.3.1.2. 分类
+##### 3.3.1.2. 分类
 
 > [Day19 ES内存那点事][]
 >
@@ -204,9 +205,9 @@ top
 
 - segment memory 段内存
 
-#### 2.3.2. 非堆内存
+#### 3.3.2. 非堆内存
 
-#### 2.3.3. 参考文章
+#### 3.3.3. 参考文章
 
 > - https://www.elastic.co/guide/cn/elasticsearch/guide/current/_limiting_memory_usage.html
 > - https://blog.csdn.net/u011032846/article/details/78087272
@@ -214,30 +215,30 @@ top
 > - https://elasticsearch.cn/question/3995
 > - https://www.elastic.co/blog/a-heap-of-trouble
 
-### 2.4. 高可用
+### 3.4. 高可用
 
 - date数据容灾
-    - master 节点数量、节点内存
-    - date 物理机分离，多机部署，使用复制分片
-    - docker部署
+  - master 节点数量、节点内存
+  - date 物理机分离，多机部署，使用复制分片
+  - docker部署
 - 复制分片（replicas）数量
 - 分片数量与分页
 - 分布式文档存储
-    - [Elasticsearch: 权威指南 » 基础入门 » 分布式文档存储](https://www.elastic.co/guide/cn/elasticsearch/guide/current/distributed-docs.html) 
+  - [Elasticsearch: 权威指南 » 基础入门 » 分布式文档存储](https://www.elastic.co/guide/cn/elasticsearch/guide/current/distributed-docs.html) 
 
-### 2.5. 客户端
+### 3.5. 客户端
 
-## 3. `API`
+## 4. `API`
 
-### 3.1. 通用信息
+### 4.1. 通用信息
 
-#### 3.1.1. 参数列表
+#### 4.1.1. 参数列表
 
 - `| sort -rnk1` 管道排序，按照第1列进行排序
 - `&pretty` 使用 `json` 格式化展示数据
 - `-H "Accept: application/json"` 接收`form`参数传值
 
-##### 3.1.1.1. 通用配置
+##### 4.1.1.1. 通用配置
 
 > [Elasticsearch » API Conventions » Common options][]
 
@@ -256,9 +257,9 @@ top
 | `tb` | `Terabytes` |
 | `pb` | `Petabytes` |
 
-### 3.2. `cat APIs`
+### 4.2. `cat APIs`
 
-#### 3.2.1. 通用参数
+#### 4.2.1. 通用参数
 
 | 参数            | 缩写              | 说明                                                  |
 | --------------- | ----------------- | ----------------------------------------------------- |
@@ -269,16 +270,16 @@ top
 | Response format | `format`          | `format=text/json/smile/yaml/cbor` 返回数据的展示格式 |
 | Sort            | `s`               | `s=column1:desc,column2:asc` 设置排序列               |
 
-### 3.3. `cat nodes`
+### 4.3. `cat nodes`
 
 > [Elasticsearch Reference » cat APIs » cat nodes][]
 
-#### 3.3.1. `Columns`
+#### 4.3.1. `Columns`
 
 > 见 catNodesColumns.md
 
 
-### 3.4. `Indices APIs`
+### 4.4. `Indices APIs`
 
 索引级API，主要用于操作索引相关。诸如：创建、删除、更新、关闭/打开索引等。
 
@@ -297,9 +298,9 @@ POST /index-name/_close
 POST /index-name/_open
 ```
 
-### 3.5. `Document APIs`
+### 4.5. `Document APIs`
 
-#### 3.5.1. `reindex`
+#### 4.5.1. `reindex`
 
 - 根据源数据中`@timestamp`重建索引到对应时间下；当然，需要事先使用`index template`创建对应模板
 
@@ -330,9 +331,9 @@ POST /index-name/_open
 };
 ```
 
-### 3.6. `Search APIs`
+### 4.6. `Search APIs`
 
-## 4. 数据结构
+## 5. 数据结构
 
 - 业务能力
   - 非关系
@@ -341,95 +342,95 @@ POST /index-name/_open
 - 非实时数据（库存、价格）
   - 数据统计延迟
 
-### 4.1. `Index`
+### 5.1. `Index`
 
-#### 4.1.1. 原理
+#### 5.1.1. 原理
 
 - 倒排索引
 
-#### 4.1.2. `alias`
+#### 5.1.2. `alias`
 
 - 按时间切割日志索引
 
-#### 4.1.3. `setting`
+#### 5.1.3. `setting`
 
 - `routing`
 
-### 4.2. `Mapping`
+### 5.2. `Mapping`
 
 - 只增不可删改
 
-#### 4.2.1. `type`
+#### 5.2.1. `type`
 
 - [Removal of mapping types][]
   
-#### 4.2.2. `Field datatypes`
+#### 5.2.2. `Field datatypes`
 
 - [字段类型(field type)](https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html)
 
-### 4.3. `Meta-Fields`
+### 5.3. `Meta-Fields`
 
 - _source
 
-### 4.4. `Mapping parameters`
+### 5.4. `Mapping parameters`
 
 - store
 
-### 4.5. `Analysis`
+### 5.5. `Analysis`
 
 - Analyzers
 - Tokenizers
   - 中文分词（IK、jieba）
   - 拼音分词（pinyin）
 
-## 5. 数据查询与聚合
+## 6. 数据查询与聚合
 
-### 5.1. `Query DSL`
+### 6.1. `Query DSL`
 
-### 5.2. `Search`
+### 6.2. `Search`
 
-#### 5.2.1. `score`
+#### 6.2.1. `score`
 
 - [How scoring works in Elasticsearch](https://www.compose.com/articles/how-scoring-works-in-elasticsearch/)
 - tf-idf
 - BM25，[BM25 The Next Generation of Lucene Relevance](http://opensourceconnections.com/blog/2015/10/16/bm25-the-next-generation-of-lucene-relevation/)
 
-#### 5.2.2. `match`与`term`
+#### 6.2.2. `match`与`term`
 
 - [elasticsearch 查询（match和term）](https://www.cnblogs.com/yjf512/p/4897294.html)
 - [suggest & search](https://github.com/diandainfo/ess_api/blob/master/doc/elasticsearch/search/readme.md#3-suggest)
 
-#### 5.2.3. `from`+`size`
+#### 6.2.3. `from`+`size`
 
 - [Elasticsearch Reference [6.1] » Search APIs » Request Body Search » From / Size](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-from-size.html)
 - `max_result_window`
 
-#### 5.2.4. `Highlighting`
+#### 6.2.4. `Highlighting`
 
 - [Elasticsearch Reference [6.1] » Search APIs » Request Body Search » Highlighting](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-request-highlighting.html)
 
-### 5.3. `Query`
+### 6.3. `Query`
 
-#### 5.3.1. `scroll query`
+#### 6.3.1. `scroll query`
 
-#### 5.3.2. `geo queries`
+#### 6.3.2. `geo queries`
 
-### 5.4. `Suggesters`
+### 6.4. `Suggesters`
 
-### 5.5. `Aggregates`
+### 6.5. `Aggregates`
 
 - 解决问题：多维度聚合、top级查询
 - [top级聚合：Elasticsearch Reference [6.1] » Aggregations » Metrics Aggregations » Top Hits Aggregation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-top-hits-aggregation.html)
 - [sum聚合：Elasticsearch Reference [6.1] » Aggregations » Metrics Aggregations » Sum Aggregation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-sum-aggregation.html)
 - [子查询、交叉维度聚合：Elasticsearch Reference [6.1] » Aggregations » Bucket Aggregations » Children Aggregation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-children-aggregation.html)
 
-## 6. 解决方案
+## 7. 解决方案
 
-### 6.1. 工具
+### 7.1. 工具
 
-#### 6.1.1. 数据同步
+#### 7.1.1. 数据同步
 
-##### 6.1.1.1. `MongoDB-to-ES`
+##### 7.1.1.1. `MongoDB-to-ES`
 
 ###### `logstash-input-mongodb`
 
@@ -445,9 +446,9 @@ POST /index-name/_open
 
 > [yougov/mongo-connector](https://github.com/yougov/mongo-connector)
 
-#### 6.1.2. 基准测试
+#### 7.1.2. 基准测试
 
-##### 6.1.2.1. `esrally`
+##### 7.1.2.1. `esrally`
 
 > [GitHub - elastic/rally](https://github.com/elastic/rally)
 > **`COPY FROM`** [Elasticsearch 压测方案之 esrally 简介](https://segmentfault.com/a/1190000011174694?utm_source=tag-newest)
@@ -457,7 +458,7 @@ pip3 install esrally
 esrally --distribution-version=6.4.0
 ```
 
-## 7. 参考文献
+## 8. 参考文献
 
 > [《搜索实现的简单说明》](https://github.com/occultskyrong/blog/blob/master/public/docs/elastic_stack/search.md)
 >

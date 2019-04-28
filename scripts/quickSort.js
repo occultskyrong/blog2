@@ -8,11 +8,11 @@ const QuickSort = (array) => {
   const leftArray = []; // 左边数组
   const rightArray = []; // 右边数组
   // 循环数组，判断是否大于中间值，大于放右边，否则放左边
-  for (let i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i += 1) {
     if (i !== middleIndex) {
       const val = array[i]; // 当前位置值
       if (val > middleNumber) { // 大于放右边
-        rightArray.push(val)
+        rightArray.push(val);
       } else { // 否则放左边
         leftArray.push(val);
       }
