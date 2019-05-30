@@ -22,157 +22,241 @@
 - [1. 方法论](#1-方法论)
   - [1.1. 知其然，知其所以然](#11-知其然知其所以然)
 - [2. 目录](#2-目录)
-- [3. 底层原理](#3-底层原理)
-  - [3.1. 操作系统原理](#31-操作系统原理)
-  - [3.2. `Linux`](#32-linux)
-    - [3.2.1. 操作系统](#321-操作系统)
-      - [3.2.1.1. `CentOS`](#3211-centos)
-      - [3.2.1.2. `Mac OS`](#3212-mac-os)
-      - [3.2.1.3. `Ubuntu`](#3213-ubuntu)
-    - [3.2.2. 文件系统](#322-文件系统)
-      - [3.2.2.1. 文件权限](#3221-文件权限)
-      - [3.2.2.2. Linux下各文件夹功能](#3222-linux下各文件夹功能)
-    - [3.2.3. Shell命令](#323-shell命令)
-      - [3.2.3.1. 工具命令](#3231-工具命令)
-      - [3.2.3.2. 实用命令](#3232-实用命令)
-      - [3.2.3.3. 自定义命令](#3233-自定义命令)
-  - [3.3. `Http` 协议](#33-http-协议)
-    - [3.3.1. 版本](#331-版本)
-    - [3.3.2. `Headers`](#332-headers)
-      - [3.3.2.1. `General` 通用首部字段](#3321-general-通用首部字段)
-      - [3.3.2.2. `Request` 请求首部字段](#3322-request-请求首部字段)
-      - [3.3.2.3. `Response` 响应首部字段](#3323-response-响应首部字段)
-      - [3.3.2.4. `Entity` 实体首部字段](#3324-entity-实体首部字段)
-  - [3.4. JVM](#34-jvm)
-  - [3.5. 浏览器](#35-浏览器)
-    - [3.5.1. 同源策略](#351-同源策略)
-- [4. 基础知识](#4-基础知识)
-  - [4.1. 数据结构](#41-数据结构)
-  - [4.2. 架构](#42-架构)
-    - [4.2.1. `Remote Procedure Calls`](#421-remote-procedure-calls)
-    - [4.2.2. `ELK`](#422-elk)
-  - [4.3. 算法](#43-算法)
-    - [4.3.1. 复杂度](#431-复杂度)
-      - [4.3.1.1. 时间复杂度](#4311-时间复杂度)
-      - [4.3.1.2. 空间复杂度](#4312-空间复杂度)
-    - [4.3.2. `MapReduce`](#432-mapreduce)
-    - [4.3.3. `Bit-map`](#433-bit-map)
-    - [4.3.4. `Bloom Filter`](#434-bloom-filter)
-    - [4.3.5. 排序算法](#435-排序算法)
-      - [4.3.5.1. 冒泡法](#4351-冒泡法)
-      - [4.3.5.2. 插入法](#4352-插入法)
-      - [4.3.5.3. 快速排序](#4353-快速排序)
-  - [4.4. 各种锁机制](#44-各种锁机制)
-    - [4.4.1. 乐观锁](#441-乐观锁)
-    - [4.4.2. 悲观锁](#442-悲观锁)
-    - [4.4.3. 分布式锁](#443-分布式锁)
-- [5. 架构设计](#5-架构设计)
-  - [5.1. 分布式](#51-分布式)
-    - [5.1.1. 取号器](#511-取号器)
-    - [5.1.2. 幂等性](#512-幂等性)
-  - [5.2. 高并发](#52-高并发)
-    - [5.2.1. 消息队列](#521-消息队列)
-      - [5.2.1.1. `RabbitMQ`](#5211-rabbitmq)
-- [6. 应用工具](#6-应用工具)
-  - [6.1. 运维工具](#61-运维工具)
-    - [6.1.1. `Grafana`](#611-grafana)
-  - [6.2. 微服务](#62-微服务)
-    - [6.2.1. `ZooKeeper`](#621-zookeeper)
-    - [6.2.2. `Kafka`](#622-kafka)
-    - [6.2.3. `K8S`](#623-k8s)
-  - [6.3. 架构](#63-架构)
-    - [6.3.1. 规则引擎](#631-规则引擎)
-  - [6.4. 项目管理](#64-项目管理)
-  - [6.5. 版本管理](#65-版本管理)
-    - [6.5.1. `SemVer`](#651-semver)
-    - [6.5.2. `Git`](#652-git)
-      - [6.5.2.1. 常用命令](#6521-常用命令)
-      - [6.5.2.2. 不常用命令](#6522-不常用命令)
-      - [6.5.2.3. `git commit`](#6523-git-commit)
-      - [6.5.2.4. 工作区、暂存区、本地仓库、远程仓库](#6524-工作区暂存区本地仓库远程仓库)
-      - [6.5.2.5. 分支操作](#6525-分支操作)
-      - [6.5.2.6. 自定义`Git`命令](#6526-自定义git命令)
-    - [6.5.3. `GitHub`](#653-github)
-      - [6.5.3.1. `Github` 搜索](#6531-github-搜索)
-  - [6.6. `Maven`](#66-maven)
-  - [6.7. `NPM`](#67-npm)
-    - [6.7.1. `npm outdated`](#671-npm-outdated)
-    - [6.7.2. `npm update`](#672-npm-update)
-    - [6.7.3. `npm cache`](#673-npm-cache)
-  - [6.8. `Yarn`](#68-yarn)
-- [7. 工程化](#7-工程化)
-  - [7.1. `Docker`](#71-docker)
-    - [7.1.1. 释义](#711-释义)
-    - [7.1.2. `docker`命令](#712-docker命令)
-      - [7.1.2.1. `docker network`](#7121-docker-network)
-    - [7.1.3. `docker kafka`](#713-docker-kafka)
-    - [7.1.4. `docker mysql`](#714-docker-mysql)
-    - [7.1.5. `docker mongo`](#715-docker-mongo)
-  - [7.2. 单元测试](#72-单元测试)
-    - [7.2.1. `Mocha`](#721-mocha)
-    - [7.2.2. `Jest`](#722-jest)
-    - [7.2.3. `SuperTest`](#723-supertest)
-  - [7.3. 前端工程化](#73-前端工程化)
-    - [7.3.1. `webpack`](#731-webpack)
-    - [7.3.2. `gulp`](#732-gulp)
-    - [7.3.3. `grunt`](#733-grunt)
-- [8. 开发语言](#8-开发语言)
-  - [8.1. `Java`](#81-java)
-  - [8.2. `JavaScript`](#82-javascript)
-    - [8.2.1. `JavaScript` 源码阅读](#821-javascript-源码阅读)
-      - [8.2.1.1. `sort`](#8211-sort)
-  - [8.3. `NodeJS`](#83-nodejs)
-    - [8.3.1. 奇淫巧技](#831-奇淫巧技)
-    - [8.3.2. 经典面试题](#832-经典面试题)
-      - [8.3.2.1. 实现一个 `sleep` 函数](#8321-实现一个-sleep-函数)
-      - [8.3.2.2. 生成 `从0到n` 的数组](#8322-生成-从0到n-的数组)
-      - [8.3.2.3. 实现高阶函数](#8323-实现高阶函数)
-    - [8.3.3. `Modules`](#833-modules)
-    - [8.3.4. 生产问题](#834-生产问题)
-      - [8.3.4.1. 内存泄漏](#8341-内存泄漏)
-      - [8.3.4.2. 文件编码问题](#8342-文件编码问题)
-  - [8.4. `TypeScript`](#84-typescript)
-- [9. 数据库](#9-数据库)
-  - [9.1. 调优方式](#91-调优方式)
-    - [9.1.1. 分库分表](#911-分库分表)
-    - [9.1.2. 读写分离](#912-读写分离)
-    - [9.1.3. 查询缓存](#913-查询缓存)
-  - [9.2. `Redis`](#92-redis)
-  - [9.3. `MySQL`](#93-mysql)
-    - [9.3.1. 常规操作](#931-常规操作)
-      - [9.3.1.1. 权限](#9311-权限)
-      - [9.3.1.2. 数据导出](#9312-数据导出)
-    - [9.3.2. 锁机制](#932-锁机制)
-  - [9.4. `Mongo`](#94-mongo)
-    - [9.4.1. `MongoDB`](#941-mongodb)
-      - [9.4.1.1. ObjectId Generator](#9411-objectid-generator)
-      - [9.4.1.2. `oplog`](#9412-oplog)
-    - [9.4.2. `Mongoose`](#942-mongoose)
-      - [9.4.2.1. `Schema`](#9421-schema)
-      - [9.4.2.2. `find`](#9422-find)
-      - [9.4.2.3. `Aggregate`](#9423-aggregate)
-    - [9.4.3. `MongoDB-to-ElasticSearch`](#943-mongodb-to-elasticsearch)
-  - [9.5. ElasticSearch](#95-elasticsearch)
-  - [9.6. `Spark`](#96-spark)
-  - [9.7. `Hadoop`](#97-hadoop)
+- [3. 基础知识](#3-基础知识)
+  - [3.1. 数据结构](#31-数据结构)
+  - [3.2. 架构](#32-架构)
+    - [3.2.1. `Remote Procedure Calls`](#321-remote-procedure-calls)
+    - [3.2.2. `ELK`](#322-elk)
+  - [3.3. 算法](#33-算法)
+    - [3.3.1. 复杂度](#331-复杂度)
+      - [3.3.1.1. 时间复杂度](#3311-时间复杂度)
+      - [3.3.1.2. 空间复杂度](#3312-空间复杂度)
+    - [3.3.2. `MapReduce`](#332-mapreduce)
+    - [3.3.3. `Bit-map`](#333-bit-map)
+    - [3.3.4. `Bloom Filter`](#334-bloom-filter)
+    - [3.3.5. 排序算法](#335-排序算法)
+      - [3.3.5.1. 冒泡法](#3351-冒泡法)
+      - [3.3.5.2. 插入法](#3352-插入法)
+      - [3.3.5.3. 快速排序](#3353-快速排序)
+  - [3.4. 各种锁机制](#34-各种锁机制)
+    - [3.4.1. 乐观锁](#341-乐观锁)
+    - [3.4.2. 悲观锁](#342-悲观锁)
+    - [3.4.3. 分布式锁](#343-分布式锁)
+- [4. 底层原理](#4-底层原理)
+  - [4.1. 操作系统原理](#41-操作系统原理)
+  - [4.2. `Linux`](#42-linux)
+    - [4.2.1. 操作系统](#421-操作系统)
+      - [4.2.1.1. `CentOS`](#4211-centos)
+      - [4.2.1.2. `Mac OS`](#4212-mac-os)
+      - [4.2.1.3. `Ubuntu`](#4213-ubuntu)
+    - [4.2.2. 文件系统](#422-文件系统)
+      - [4.2.2.1. 文件权限](#4221-文件权限)
+      - [4.2.2.2. Linux下各文件夹功能](#4222-linux下各文件夹功能)
+    - [4.2.3. Shell命令](#423-shell命令)
+      - [4.2.3.1. 工具命令](#4231-工具命令)
+      - [4.2.3.2. 实用命令](#4232-实用命令)
+      - [4.2.3.3. 自定义命令](#4233-自定义命令)
+  - [4.3. `Http` 协议](#43-http-协议)
+    - [4.3.1. 版本](#431-版本)
+    - [4.3.2. `Headers`](#432-headers)
+      - [4.3.2.1. `General` 通用首部字段](#4321-general-通用首部字段)
+      - [4.3.2.2. `Request` 请求首部字段](#4322-request-请求首部字段)
+      - [4.3.2.3. `Response` 响应首部字段](#4323-response-响应首部字段)
+      - [4.3.2.4. `Entity` 实体首部字段](#4324-entity-实体首部字段)
+  - [4.4. JVM](#44-jvm)
+  - [4.5. 浏览器](#45-浏览器)
+    - [4.5.1. 同源策略](#451-同源策略)
+- [5. 数据库](#5-数据库)
+  - [5.1. 调优方式](#51-调优方式)
+    - [5.1.1. 分库分表](#511-分库分表)
+    - [5.1.2. 读写分离](#512-读写分离)
+    - [5.1.3. 查询缓存](#513-查询缓存)
+  - [5.2. `Redis`](#52-redis)
+  - [5.3. `MySQL`](#53-mysql)
+    - [5.3.1. 常规操作](#531-常规操作)
+      - [5.3.1.1. 权限](#5311-权限)
+      - [5.3.1.2. 数据导出](#5312-数据导出)
+    - [5.3.2. 锁机制](#532-锁机制)
+  - [5.4. `Mongo`](#54-mongo)
+    - [5.4.1. `MongoDB`](#541-mongodb)
+      - [5.4.1.1. ObjectId Generator](#5411-objectid-generator)
+      - [5.4.1.2. `oplog`](#5412-oplog)
+    - [5.4.2. `Mongoose`](#542-mongoose)
+      - [5.4.2.1. `Schema`](#5421-schema)
+      - [5.4.2.2. `find`](#5422-find)
+      - [5.4.2.3. `Aggregate`](#5423-aggregate)
+    - [5.4.3. `MongoDB-to-ElasticSearch`](#543-mongodb-to-elasticsearch)
+  - [5.5. ElasticSearch](#55-elasticsearch)
+  - [5.6. `Spark`](#56-spark)
+  - [5.7. `Hadoop`](#57-hadoop)
+- [6. 架构设计](#6-架构设计)
+  - [6.1. 设计模式](#61-设计模式)
+  - [6.2. 分布式](#62-分布式)
+    - [6.2.1. 取号器](#621-取号器)
+    - [6.2.2. 幂等性](#622-幂等性)
+  - [6.3. 高并发](#63-高并发)
+    - [6.3.1. 消息队列](#631-消息队列)
+      - [6.3.1.1. `RabbitMQ`](#6311-rabbitmq)
+- [7. 应用工具](#7-应用工具)
+  - [7.1. 运维工具](#71-运维工具)
+    - [7.1.1. `Grafana`](#711-grafana)
+  - [7.2. 微服务](#72-微服务)
+    - [7.2.1. `ZooKeeper`](#721-zookeeper)
+    - [7.2.2. `Kafka`](#722-kafka)
+    - [7.2.3. `K8S`](#723-k8s)
+  - [7.3. 架构](#73-架构)
+    - [7.3.1. 规则引擎](#731-规则引擎)
+  - [7.4. 项目管理](#74-项目管理)
+  - [7.5. 版本管理](#75-版本管理)
+    - [7.5.1. `SemVer`](#751-semver)
+    - [7.5.2. `Git`](#752-git)
+      - [7.5.2.1. 常用命令](#7521-常用命令)
+      - [7.5.2.2. 不常用命令](#7522-不常用命令)
+      - [7.5.2.3. `git commit`](#7523-git-commit)
+      - [7.5.2.4. 工作区、暂存区、本地仓库、远程仓库](#7524-工作区暂存区本地仓库远程仓库)
+      - [7.5.2.5. 分支操作](#7525-分支操作)
+      - [7.5.2.6. 自定义`Git`命令](#7526-自定义git命令)
+    - [7.5.3. `GitHub`](#753-github)
+      - [7.5.3.1. `Github` 搜索](#7531-github-搜索)
+  - [7.6. `Maven`](#76-maven)
+  - [7.7. `NPM`](#77-npm)
+    - [7.7.1. `npm outdated`](#771-npm-outdated)
+    - [7.7.2. `npm update`](#772-npm-update)
+    - [7.7.3. `npm cache`](#773-npm-cache)
+  - [7.8. `Yarn`](#78-yarn)
+- [8. 工程化](#8-工程化)
+  - [8.1. `Docker`](#81-docker)
+    - [8.1.1. 释义](#811-释义)
+    - [8.1.2. `docker`命令](#812-docker命令)
+      - [8.1.2.1. `docker network`](#8121-docker-network)
+    - [8.1.3. `docker kafka`](#813-docker-kafka)
+    - [8.1.4. `docker mysql`](#814-docker-mysql)
+    - [8.1.5. `docker mongo`](#815-docker-mongo)
+  - [8.2. 单元测试](#82-单元测试)
+    - [8.2.1. `Mocha`](#821-mocha)
+    - [8.2.2. `Jest`](#822-jest)
+    - [8.2.3. `SuperTest`](#823-supertest)
+  - [8.3. 前端工程化](#83-前端工程化)
+    - [8.3.1. `webpack`](#831-webpack)
+    - [8.3.2. `gulp`](#832-gulp)
+    - [8.3.3. `grunt`](#833-grunt)
+- [9. 开发语言](#9-开发语言)
+  - [9.1. `Java`](#91-java)
+  - [9.2. `JavaScript`](#92-javascript)
+    - [9.2.1. `JavaScript` 源码阅读](#921-javascript-源码阅读)
+      - [9.2.1.1. `sort`](#9211-sort)
+  - [9.3. `NodeJS`](#93-nodejs)
+    - [9.3.1. 奇淫巧技](#931-奇淫巧技)
+    - [9.3.2. 经典面试题](#932-经典面试题)
+      - [9.3.2.1. 实现一个 `sleep` 函数](#9321-实现一个-sleep-函数)
+      - [9.3.2.2. 生成 `从0到n` 的数组](#9322-生成-从0到n-的数组)
+      - [9.3.2.3. 实现高阶函数](#9323-实现高阶函数)
+    - [9.3.3. `Modules`](#933-modules)
+    - [9.3.4. 生产问题](#934-生产问题)
+      - [9.3.4.1. 内存泄漏](#9341-内存泄漏)
+      - [9.3.4.2. 文件编码问题](#9342-文件编码问题)
+  - [9.4. `TypeScript`](#94-typescript)
 - [10. 解决方案](#10-解决方案)
   - [10.1. 电商系统](#101-电商系统)
 
 <!-- /TOC -->
 
-## 3. 底层原理
+## 3. 基础知识
+
+### 3.1. 数据结构
+
+### 3.2. 架构
+
+#### 3.2.1. `Remote Procedure Calls`
+
+#### 3.2.2. `ELK`
+
+`ElasticSearch、Logstash、Kibana、FileBeat` 等 `Elastic Stack` 相关工具的说明
+
+具体见 [ElasticSearch](./ElasticSearch)
+
+### 3.3. 算法
+
+#### 3.3.1. 复杂度
+
+##### 3.3.1.1. 时间复杂度
+
+##### 3.3.1.2. 空间复杂度
+
+#### 3.3.2. `MapReduce`
+
+> **`COPY FROM`** [MapReduce: Simplified Data Processing on Large Clusters](https://ai.google/research/pubs/pub62)
+>
+> **`COPY FROM`** [[翻译]MapReduce: Simplified Data Processing on Large Clusters](https://www.cnblogs.com/fuzhe1989/p/3413457.html)
+
+#### 3.3.3. `Bit-map`
+
+#### 3.3.4. `Bloom Filter`
+
+布隆过滤器，见 `吴军《数学之美》-- 第23章　布隆过滤器`
+
+- **What** ：
+- **Where** : 在较大数量的集合中确定某个值是否存在
+- **How** ：
+- **Why** ：
+
+#### 3.3.5. 排序算法
+
+##### 3.3.5.1. 冒泡法
+
+##### 3.3.5.2. 插入法
+
+##### 3.3.5.3. 快速排序
+
+取中间值，左小右大，递归左右
+
+```JavaScript
+/**
+ * 快速排序
+ */
+const QuickSort = (array) => {
+  if (array.length <= 1) { return array; } // 数组长度≤1，则直接返回
+  const middleIndex = Math.floor(array.length / 2); // 找到中间位置
+  const middleNumber = array[middleIndex]; // 中间位置值大小
+  const leftArray = []; // 左边数组
+  const rightArray = []; // 右边数组
+  // 循环数组，判断是否大于中间值，大于放右边，否则放左边
+  for (let i = 0; i < array.length; i++) {
+    if (i !== middleIndex) {
+      const val = array[i]; // 当前位置值
+      if (val > middleNumber) { // 大于放右边
+        rightArray.push(val)
+      } else { // 否则放左边
+        leftArray.push(val);
+      }
+    }
+  }
+  // 左、右数组排序后合并
+  return QuickSort(leftArray).concat([middleNumber], QuickSort(rightArray));
+};
+```
+
+### 3.4. 各种锁机制
+
+#### 3.4.1. 乐观锁
+
+#### 3.4.2. 悲观锁
+
+#### 3.4.3. 分布式锁
+
+## 4. 底层原理
 
 阐述计算机是如何工作；操作系统对系统资源的使用管理；协议说明
 
-### 3.1. 操作系统原理
+### 4.1. 操作系统原理
 
-### 3.2. `Linux`
+### 4.2. `Linux`
 
-#### 3.2.1. 操作系统
+#### 4.2.1. 操作系统
 
-##### 3.2.1.1. `CentOS`
+##### 4.2.1.1. `CentOS`
 
-##### 3.2.1.2. `Mac OS`
+##### 4.2.1.2. `Mac OS`
 
 - `Homebrew` ，`macOS` 缺失的软件包的管理器
 
@@ -182,11 +266,11 @@
 brew install xxx
 ```
 
-##### 3.2.1.3. `Ubuntu`
+##### 4.2.1.3. `Ubuntu`
 
-#### 3.2.2. 文件系统
+#### 4.2.2. 文件系统
 
-##### 3.2.2.1. 文件权限
+##### 4.2.2.1. 文件权限
 
 > **`COPY FROM`**[Linux 下 ls -l 命令执行显示结果的每一列含义](https://blog.csdn.net/zhuoya_/article/details/77418413)
 >
@@ -204,7 +288,7 @@ chmod a+x filename
 
 - 变更权限
 
-##### 3.2.2.2. Linux下各文件夹功能
+##### 4.2.2.2. Linux下各文件夹功能
 
 > **`COPY FROM`**[Linux文件系统](http://c.biancheng.net/cpp/html/2779.html)
 
@@ -227,9 +311,9 @@ chmod a+x filename
 | /var  | variable，主要包含一些可变长度的文件，会经常对数据进行读写，例如日志文件和打印队列里的文件。                 |
 <!-- markdownlint-enable MD013 -->
 
-#### 3.2.3. Shell命令
+#### 4.2.3. Shell命令
 
-##### 3.2.3.1. 工具命令
+##### 4.2.3.1. 工具命令
 
 - `axel`
   - 说明：
@@ -262,7 +346,7 @@ ln -s [源文件路径] [目标路径]
 - `top`
 - `tree`
 
-##### 3.2.3.2. 实用命令
+##### 4.2.3.2. 实用命令
 
 能解决某个/某些问题的一个/组命令
 
@@ -276,7 +360,7 @@ ps -ef | grep redis
 ls -l /proc/xxx/cwd
 ```
 
-##### 3.2.3.3. 自定义命令
+##### 4.2.3.3. 自定义命令
 
 - `Mac`自定义`shell`命令
 
@@ -315,140 +399,278 @@ source ~/.bash_profile
 source ~/.zshrc
 ```
 
-### 3.3. `Http` 协议
+### 4.3. `Http` 协议
 
 > **`BOOK`** [《图解HTTP》- 上野 宣 (作者) 于均良 (译者)](http://www.ituring.com.cn/book/1229)
 
-#### 3.3.1. 版本
+#### 4.3.1. 版本
 
-#### 3.3.2. `Headers`
+#### 4.3.2. `Headers`
 
-##### 3.3.2.1. `General` 通用首部字段
+##### 4.3.2.1. `General` 通用首部字段
 
 既可以出现在请求报头，也可以出现在响应报头中。
 
 - `Cache-Control` : 控制缓存的行为，`private, max-age=0, no-cache`
 
-##### 3.3.2.2. `Request` 请求首部字段
+##### 4.3.2.2. `Request` 请求首部字段
 
-##### 3.3.2.3. `Response` 响应首部字段
+##### 4.3.2.3. `Response` 响应首部字段
 
-##### 3.3.2.4. `Entity` 实体首部字段
+##### 4.3.2.4. `Entity` 实体首部字段
 
-### 3.4. JVM
+### 4.4. JVM
 
-### 3.5. 浏览器
+### 4.5. 浏览器
 
-#### 3.5.1. 同源策略
+#### 4.5.1. 同源策略
 
-## 4. 基础知识
+## 5. 数据库
 
-### 4.1. 数据结构
+### 5.1. 调优方式
 
-### 4.2. 架构
+#### 5.1.1. 分库分表
 
-#### 4.2.1. `Remote Procedure Calls`
+#### 5.1.2. 读写分离
 
-#### 4.2.2. `ELK`
+#### 5.1.3. 查询缓存
 
-`ElasticSearch、Logstash、Kibana、FileBeat` 等 `Elastic Stack` 相关工具的说明
+### 5.2. `Redis`
 
-具体见 [ElasticSearch](./ElasticSearch)
+- `Set`
+  - **What** ：无序不重复数组
+  - **Where** ：校验某个元素是否已存在。
+  - **How** ：`SADD` 增加 不同的 `set` + 相同的 `member` ，返回1则说明不存在；否则说明存在。
+  - **Why** ：`set` 中的 `member` 具有唯一性；写入 `member` 时，如 `member` 不存在，则返回 `(integer) 1` ；否则返回 `(integer) 0`
 
-### 4.3. 算法
+### 5.3. `MySQL`
 
-#### 4.3.1. 复杂度
+该部分仅涉及相关数据库的操作和使用，有关`mysql`的安装及配置，见上文中`docker mysql`，此章节不再赘述
 
-##### 4.3.1.1. 时间复杂度
+#### 5.3.1. 常规操作
 
-##### 4.3.1.2. 空间复杂度
+##### 5.3.1.1. 权限
 
-#### 4.3.2. `MapReduce`
+下文命令/操作，均以以下配置为环境
 
-> **`COPY FROM`** [MapReduce: Simplified Data Processing on Large Clusters](https://ai.google/research/pubs/pub62)
->
-> **`COPY FROM`** [[翻译]MapReduce: Simplified Data Processing on Large Clusters](https://www.cnblogs.com/fuzhe1989/p/3413457.html)
-
-#### 4.3.3. `Bit-map`
-
-#### 4.3.4. `Bloom Filter`
-
-布隆过滤器，见 `吴军《数学之美》-- 第23章　布隆过滤器`
-
-- **What** ：
-- **Where** : 在较大数量的集合中确定某个值是否存在
-- **How** ：
-- **Why** ：
-
-#### 4.3.5. 排序算法
-
-##### 4.3.5.1. 冒泡法
-
-##### 4.3.5.2. 插入法
-
-##### 4.3.5.3. 快速排序
-
-取中间值，左小右大，递归左右
-
-```JavaScript
-/**
- * 快速排序
- */
-const QuickSort = (array) => {
-  if (array.length <= 1) { return array; } // 数组长度≤1，则直接返回
-  const middleIndex = Math.floor(array.length / 2); // 找到中间位置
-  const middleNumber = array[middleIndex]; // 中间位置值大小
-  const leftArray = []; // 左边数组
-  const rightArray = []; // 右边数组
-  // 循环数组，判断是否大于中间值，大于放右边，否则放左边
-  for (let i = 0; i < array.length; i++) {
-    if (i !== middleIndex) {
-      const val = array[i]; // 当前位置值
-      if (val > middleNumber) { // 大于放右边
-        rightArray.push(val)
-      } else { // 否则放左边
-        leftArray.push(val);
-      }
-    }
-  }
-  // 左、右数组排序后合并
-  return QuickSort(leftArray).concat([middleNumber], QuickSort(rightArray));
-};
+```config
+mysql -h 127.0.0.1 -uroot -p
+root
 ```
 
-### 4.4. 各种锁机制
+```bash
+# 切换到mysql数据库
+use mysql;
+# 查询当前用户权限信息
+SELECT Host,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv FROM user;
+# 修改密码
+SET password for root@localhost = password('123');  
+```
 
-#### 4.4.1. 乐观锁
+###### 遇到 `caching-sha2-password` 问题
 
-#### 4.4.2. 悲观锁
+错误描述信息: `MySQL said: Authentication plugin 'caching_sha2_password' cannot be loaded: dlopen(/usr/local/lib/plugin/caching_sha2_password.so, 2): image not found`
 
-#### 4.4.3. 分布式锁
+```bash
+# 查看用户的加密方式
+SELECT Host,User,authentication_string,plugin FROM user;
+# 查看用户密码的过期信息
+SELECT password_expired,password_last_changed,password_lifetime  FROM user;
+# 结果中plugin为 caching_sha2_password
+# 更新用户密码
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+# 再次查看plugin信息，已经变成 mysql_native_password
 
-## 5. 架构设计
+# 此时可以通过局域网进行连接
+```
 
-### 5.1. 分布式
+##### 5.3.1.2. 数据导出
 
-#### 5.1.1. 取号器
+#### 5.3.2. 锁机制
+
+> **`COPY FROM`** [『浅入浅出』MySQL 和 InnoDB](https://draveness.me/mysql-innodb)
+
+### 5.4. `Mongo`
+
+#### 5.4.1. `MongoDB`
+
+##### 5.4.1.1. ObjectId Generator
+
+> **`COPY FROM`** [Generating Globally Unique Identifiers for Use with MongoDB](https://www.mongodb.com/blog/post/generating-globally-unique-identifiers-for-use-with-mongodb)
+
+##### 5.4.1.2. `oplog`
+
+> **`COPY FROM`** [Replica Set Oplog](https://docs.mongodb.com/manual/core/replica-set-oplog/)
+>
+> The oplog (operations log) is a special capped collection that keeps a rolling record of all operations that modify the data stored in your databases.
+
+- 在 `/etc/mongodb.conf`配置
+
+> [MongoDB: replSet can't get local.system.replset config from self or any seed “server is not running with --replSet”](https://stackoverflow.com/questions/31926795/mongodb-replset-cant-get-local-system-replset-config-from-self-or-any-seed-se)
+>
+> [Administration > Configuration and Maintenance > Run-time Database Configuration](https://docs.mongodb.com/manual/administration/configuration/#replication-and-sharding-configuration)
+
+```bash
+sudo vim /etc/mongodb.conf
+
+# 编辑文件
+replication:
+   replSetName: rs0
+processManagement:
+   fork: true
+
+# 重启 mongod
+su
+ps -ef | grep mongod
+kill <pid>
+# 使用配置文件启动
+/usr/bin/mongod --config /etc/mongod.conf &
+```
+
+- `mongod` 启动出现错误
+
+> [MongoDB:Too many open files](https://blog.csdn.net/cug_heshun2013/article/details/50916597)
+
+```bash
+# 查看 mongo 日志
+tail -f /var/log/mongodb/mongod.log
+# 查看配置文件中信息
+storage:
+  dbPath: /var/lib/mongodb
+  journal:
+    enabled: true
+# 修复 mongo ， dbpath即为上文件中对应信息
+mongod --repair --dbpath=/var/lib/mongodb
+# 删除 锁定文件
+rm /var/lib/mongodb/mongod.lock
+# 重新分配权限
+sudo chown -R mongodb:mongodb /var/lib/mongodb/
+```
+
+#### 5.4.2. `Mongoose`
+
+##### 5.4.2.1. `Schema`
+
+- 数组数据结构
+
+> **`COPY FROM`** [Mongoose >> Populate](https://mongoosejs.com/docs/populate.html)
+>
+> **`COPY FROM`** [Mongoose - using Populate on an array of ObjectId](https://stackoverflow.com/questions/10568281/mongoose-using-populate-on-an-array-of-objectid)
+
+```JavaScript
+const { Schema } = require('mongoose');
+const demo = new Schema({
+  key1: { type: 'ObjectId', ref: 'Key1' },
+  key2: [{ type: 'ObjectId', ref: 'Key2' }],
+  key3: String,
+  key4: [{ type: String }],
+})
+```
+
+##### 5.4.2.2. `find`
+
+- 查询结果的构造及解析
+
+> **`COPY FROM`** [Add a new property to Mongoose Document after fetch [duplicate]](https://stackoverflow.com/questions/31534534/add-a-new-property-to-mongoose-document-after-fetch)
+
+##### 5.4.2.3. `Aggregate`
+
+- 聚合查询中时间匹配查询
+
+> **`COPY FROM`** [Mongo: dates in match aggregate query seem to be ignored](https://stackoverflow.com/questions/15024383/mongo-dates-in-match-aggregate-query-seem-to-be-ignored)
+>
+> **`COPY FROM`** [Aggregate $match with ISODate](https://github.com/Automattic/mongoose/issues/1599)
+
+```JavaScript
+Model.aggregate([{ $match: { createdAt: { $gte: new Date(start) , $lte: new Date(end) } } }]);
+```
+
+- 聚合查询中`_id`匹配查询
+
+```JavaScript
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
+// type:string - id
+Model.aggregate([{ $match: { _id: new Object(id) } }]);
+```
+
+#### 5.4.3. `MongoDB-to-ElasticSearch`
+
+`MongoDB` 数据同步到 `ElasticSearch` 的方式
+
+> **参考** [5 ways to synchronize data from MongoDb to ElasticSearch](https://www.linkedin.com/pulse/5-way-sync-data-from-mongodb-es-kai-hao)
+
+| 技术                            | 覆盖版本 | 维护情况             | 实现及使用方式            | 设计模式 | 同步方式  | 补偿机制         | 存在问题                                                  |
+| ------------------------------- | -------- | -------------------- | ------------------------- | -------- | --------- | ---------------- | --------------------------------------------------------- |
+| [Mongoosastic][]                | x.x      | 2018-10-16,800stars  | Node Module » Hook + HTTP | 高耦合   | Hook增量  | -                | Model.remove 和 Model.update 数据未同步                   |
+| [transporter][]                 | 5.x      | 2018-05-14,1000stars | Go CLI Tool               | 低耦合   | 单次同步  | -                | 仅能执行一次，无法自动完成同步                            |
+| [elasticsearch-river-mongodb][] | 1.x      | 2016-03-22           | Java，ES plugin           | 低耦合   | 增量      | -                | 官方已关闭river方式                                       |
+| [Jdbc input plugin][]           | x.x      | 官方组件             | Logstash input filter     | 低耦合   | 增量+全量 | 追加定时全量     | 需要JDBC驱动程序支持，而`mongo没有支持良好的JDBC驱动程序` |
+| [mongo-connector][]             | 5.x      | 2018-12-06,1500stars | Python CLI Tool  » OpLog  | 低耦合   | -         | -                | 基于OpLog                                                 |
+| 基于 [mongo-oplog][] 自研       | x.x      | 2018-09-17,400stars  | Node Module » Hook + HTTP | 自定义   | Hook增量  | 自研追加定时全量 | 基于OpLog，开发成本                                       |
+| 基于 Mongoose 自研              | x.x      | -                    | Node service              | 自定义   | 增量轮询  | 自研追加定时全量 | 不利于Mongo高并发，占用mongo链接                          |
+| 基于 redis/MQ/Kafka             | x.x      | -                    | Node service              | 低耦合   | 数据流    | 自研追加定时全量 | 改造成本大，需要在前置业务端拆解功能                      |
+
+- `Mongoosastic` 数据同步说明
+
+```doc
+Auto indexing
+Mongoosastic try to auto index documents in favor of mongoose's middleware feature.
+
+Mongoosastic will auto index when document.save/Model.findOneAndUpdate/Model.insertMany/document.remove/Model.findOneAndRemove, but not include Model.remove/Model.update.
+
+And you should have new: true options when findOneAndUpdate so that mongoosastic can get new values in post hook.
+```
+
+- `Oplog` 方式说明
+
+因 `Oplog` 在一定程序上侵入 `DB` （运维）边界和权限。
+但此工具编写的目的是为了同步数据，亦是运维内部的一部分任务。
+给每个 database 指定 user 权限，确保单点工具操作拥有对应权限的数据进行同步。
+
+<!-- 引用 -->
+[mongoosastic]: https://github.com/mongoosastic/mongoosastic
+[transporter]: https://github.com/compose/transporter
+[elasticsearch-river-mongodb]: https://github.com/richardwilly98/elasticsearch-river-mongodb
+[Jdbc input plugin]: https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html
+[mongo-connector]: https://github.com/yougov/mongo-connector
+[mongo-oplog]: https://github.com/cayasso/mongo-oplog
+
+### 5.5. ElasticSearch
+
+> 见[ElasticStack](./ElasticStack/README.md)
+
+### 5.6. `Spark`
+
+### 5.7. `Hadoop`
+
+## 6. 架构设计
+
+### 6.1. 设计模式
+
+### 6.2. 分布式
+
+#### 6.2.1. 取号器
 
 分布式序列号生成
 
-#### 5.1.2. 幂等性
+#### 6.2.2. 幂等性
 
-### 5.2. 高并发
+### 6.3. 高并发
 
-#### 5.2.1. 消息队列
+#### 6.3.1. 消息队列
 
-##### 5.2.1.1. `RabbitMQ`
+##### 6.3.1.1. `RabbitMQ`
 
 > [Part 1: RabbitMQ Best Practice](https://www.cloudamqp.com/blog/2017-12-29-part1-rabbitmq-best-practice.html)
 >
 > [Part 3: 13 common RabbitMQ mistakes](https://www.cloudamqp.com/blog/2018-01-19-part4-rabbitmq-13-common-errors.html)
 
-## 6. 应用工具
+## 7. 应用工具
 
-### 6.1. 运维工具
+### 7.1. 运维工具
 
-#### 6.1.1. `Grafana`
+#### 7.1.1. `Grafana`
 
 - **What** ：一个数据可视化平台
 - **Where** ： 解决Kibana需要购买license才能开启权限；解决es-head无权限
@@ -456,27 +678,27 @@ const QuickSort = (array) => {
   
 > **`REFERENCE`** [Grafana » Labs » Configuration](http://docs.grafana.org/installation/configuration/)
 
-### 6.2. 微服务
+### 7.2. 微服务
 
-#### 6.2.1. `ZooKeeper`
-
-见下文中 `docker kafka`
-
-#### 6.2.2. `Kafka`
+#### 7.2.1. `ZooKeeper`
 
 见下文中 `docker kafka`
 
-#### 6.2.3. `K8S`
+#### 7.2.2. `Kafka`
 
-### 6.3. 架构
+见下文中 `docker kafka`
 
-#### 6.3.1. 规则引擎
+#### 7.2.3. `K8S`
 
-### 6.4. 项目管理
+### 7.3. 架构
 
-### 6.5. 版本管理
+#### 7.3.1. 规则引擎
 
-#### 6.5.1. `SemVer`
+### 7.4. 项目管理
+
+### 7.5. 版本管理
+
+#### 7.5.1. `SemVer`
 
 Semantic Versioning Specification. 语义版本规范
 
@@ -484,11 +706,11 @@ Semantic Versioning Specification. 语义版本规范
 >
 > **`COPY FROM`** [semver/semver](https://github.com/semver/semver)
 
-#### 6.5.2. `Git`
+#### 7.5.2. `Git`
 
 > **`COPY FROM`**[Git教程 - By 廖雪峰](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
-##### 6.5.2.1. 常用命令
+##### 7.5.2.1. 常用命令
 
 ```bash
 
@@ -498,7 +720,7 @@ git status
 git add .
 ```
 
-##### 6.5.2.2. 不常用命令
+##### 7.5.2.2. 不常用命令
 
 ```bash
 
@@ -508,7 +730,7 @@ git log --pretty=oneline
 git reflog
 ```
 
-##### 6.5.2.3. `git commit`
+##### 7.5.2.3. `git commit`
 
 > **`COPY FROM`** [git commit 规范指南](https://segmentfault.com/a/1190000009048911)
 
@@ -522,7 +744,7 @@ commitizen init cz-conventional-changelog --save --save-exact
 
 ```
 
-##### 6.5.2.4. 工作区、暂存区、本地仓库、远程仓库
+##### 7.5.2.4. 工作区、暂存区、本地仓库、远程仓库
 
 > **`COPY FROM`** [工作区和暂存区 - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000)
 
@@ -557,7 +779,7 @@ Untracked files:
 - 使用 `git commit` 即将暂存区所有内容提交到当前分支的本地仓库
 - 使用 `git push` 即将本地仓库中变动内容推送到远程仓库中
 
-##### 6.5.2.5. 分支操作
+##### 7.5.2.5. 分支操作
 
 ```bash
 # 查看分支
@@ -579,7 +801,7 @@ git marge <name>
 git branch -d <name>
 ```
 
-##### 6.5.2.6. 自定义`Git`命令
+##### 7.5.2.6. 自定义`Git`命令
 
 - 自定义配置
 
@@ -619,9 +841,9 @@ git merge dev
 git push
 ```
 
-#### 6.5.3. `GitHub`
+#### 7.5.3. `GitHub`
 
-##### 6.5.3.1. `Github` 搜索
+##### 7.5.3.1. `Github` 搜索
 
 Github 基于 ElasticSearch ，所以支持 ES 的 [Elasticsearch Reference » Search APIs » URI Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html)
 
@@ -637,28 +859,28 @@ Github 基于 ElasticSearch ，所以支持 ES 的 [Elasticsearch Reference » S
 
 例如：查询 stars 数量大于50000的仓库 [`https://github.com/search?q=stars:>50000`](https://github.com/search?q=stars%3A%3E50000)
 
-### 6.6. `Maven`
+### 7.6. `Maven`
 
-### 6.7. `NPM`
+### 7.7. `NPM`
 
-#### 6.7.1. `npm outdated`
+#### 7.7.1. `npm outdated`
 
-#### 6.7.2. `npm update`
+#### 7.7.2. `npm update`
 
-#### 6.7.3. `npm cache`
+#### 7.7.3. `npm cache`
 
-### 6.8. `Yarn`
+### 7.8. `Yarn`
 
-## 7. 工程化
+## 8. 工程化
 
-### 7.1. `Docker`
+### 8.1. `Docker`
 
-#### 7.1.1. 释义
+#### 8.1.1. 释义
 
 - `image`
 - `container`
 
-#### 7.1.2. `docker`命令
+#### 8.1.2. `docker`命令
 
 > **`COPY FROM`** [Docker run 命令 | 菜鸟教程](http://www.runoob.com/docker/docker-run-command.html)
 
@@ -693,7 +915,7 @@ docker rm <container-name>
 docker logs <container-name>
 ```
 
-##### 7.1.2.1. `docker network`
+##### 8.1.2.1. `docker network`
 
 因为 `kafka` 需要连接到 `zookeeper` ，所以创建一个虚拟的局域网，用于两者的连接和管理
 
@@ -723,7 +945,7 @@ zookeeper-network
 docker network inspect zookeeper-network
 ```
 
-#### 7.1.3. `docker kafka`
+#### 8.1.3. `docker kafka`
 
 - 参考文献
 
@@ -825,7 +1047,7 @@ rmr /brokers/topics/test
 # 此时已删除zk中对应topic数据
 ```
 
-#### 7.1.4. `docker mysql`
+#### 8.1.4. `docker mysql`
 
 - 准备`mysql`的安装目录，此处使用 `~/code/Tools/mysql` 作为示例
   - `data`目录将映射为`mysql`实例配置的数据文件存放路径
@@ -873,7 +1095,7 @@ mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'root';
 mysql> FLUSH PRIVILEGES;
 ```
 
-#### 7.1.5. `docker mongo`
+#### 8.1.5. `docker mongo`
 
 > [MongoDB 的 Docker 常用命令](https://www.jianshu.com/p/6fdb2bcb4b43)
 >
@@ -954,37 +1176,43 @@ db.getMongo().setSlaveOk()
 
 本地，非`docker`环境可使用 `mongodb://localhost:27017` 访问主节点，使用 `mongodb://localhost:27018` 访问复制节点
 
-### 7.2. 单元测试
+#### `docker redis`
+
+```bash
+docker run --name redis -p 6379:6379 -v ~/code/Tools/redis/data:/data  -d redis redis-server --appendonly yes
+```
+
+### 8.2. 单元测试
 
 > **`COPY FROM`** [全栈测试实战：用Jest测试Vue+Koa全栈应用](https://blog.csdn.net/itheima_Wujie/article/details/78566617)
 
-#### 7.2.1. `Mocha`
+#### 8.2.1. `Mocha`
 
-#### 7.2.2. `Jest`
+#### 8.2.2. `Jest`
 
 > **`COPY FROM`** [Async testing Koa with Jest](https://hackernoon.com/async-testing-koa-with-jest-1b6e84521b71)
 >
 > **`COPY FROM`** [A clear and concise introduction to testing Koa with Jest and Supertest](https://www.valentinog.com/blog/testing-api-koa-jest/)
 
-#### 7.2.3. `SuperTest`
+#### 8.2.3. `SuperTest`
 
-### 7.3. 前端工程化
+### 8.3. 前端工程化
 
-#### 7.3.1. `webpack`
+#### 8.3.1. `webpack`
 
-#### 7.3.2. `gulp`
+#### 8.3.2. `gulp`
 
-#### 7.3.3. `grunt`
+#### 8.3.3. `grunt`
 
-## 8. 开发语言
+## 9. 开发语言
 
-### 8.1. `Java`
+### 9.1. `Java`
 
-### 8.2. `JavaScript`
+### 9.2. `JavaScript`
 
-#### 8.2.1. `JavaScript` 源码阅读
+#### 9.2.1. `JavaScript` 源码阅读
 
-##### 8.2.1.1. `sort`
+##### 9.2.1.1. `sort`
 
 - **How**
 
@@ -1063,13 +1291,15 @@ if (to - from > 1000) {
 > **`REFERENCE`** [JS-数组sort方法用的是哪种排序算法](https://www.jianshu.com/p/0ddbc3c8f683)
 > **`REFERENCE`** [JS 数组操作之源码分析](https://www.jianshu.com/p/c19ba1ed52a0)
 
-### 8.3. `NodeJS`
+### 9.3. `NodeJS`
 
-#### 8.3.1. 奇淫巧技
+`node`的安装，使用[`nvm`](https://github.com/nvm-sh/nvm)
 
-#### 8.3.2. 经典面试题
+#### 9.3.1. 奇淫巧技
 
-##### 8.3.2.1. 实现一个 `sleep` 函数
+#### 9.3.2. 经典面试题
+
+##### 9.3.2.1. 实现一个 `sleep` 函数
 
 - `event loop`
 - `Promise`
@@ -1081,7 +1311,7 @@ function sleep(ms) {
 }
 ```
 
-##### 8.3.2.2. 生成 `从0到n` 的数组
+##### 9.3.2.2. 生成 `从0到n` 的数组
 
 ```JavaScript
 function generateArray(length) {
@@ -1089,7 +1319,7 @@ function generateArray(length) {
 }
 ```
 
-##### 8.3.2.3. 实现高阶函数
+##### 9.3.2.3. 实现高阶函数
 
 ```JavaScript
 // 结果与调用
@@ -1106,17 +1336,17 @@ function add(...args) {
 }
 ```
 
-#### 8.3.3. `Modules`
+#### 9.3.3. `Modules`
 
 `NodeJS` 中 常使用的 `module` 库，见对应 `Git` 仓库
 
 > **`@See`** [./GitRepository.md](./GitRepository.md)
 
-#### 8.3.4. 生产问题
+#### 9.3.4. 生产问题
 
-##### 8.3.4.1. 内存泄漏
+##### 9.3.4.1. 内存泄漏
 
-##### 8.3.4.2. 文件编码问题
+##### 9.3.4.2. 文件编码问题
 
 **Where** ：因为`Node`的编码统一使用`UTF-8`，所以极少有可能遇到编码的问题，但是也非绝对，当上传、下载文件时，文件内部的编码一般不是`UTF-8`，导致`Node`文件流生成的`Buffer`对象时产生乱码。
 
@@ -1165,226 +1395,7 @@ function add(...args) {
   res.end(content);
 ```
 
-### 8.4. `TypeScript`
-
-## 9. 数据库
-
-### 9.1. 调优方式
-
-#### 9.1.1. 分库分表
-
-#### 9.1.2. 读写分离
-
-#### 9.1.3. 查询缓存
-
-### 9.2. `Redis`
-
-- `Set`
-  - **What** ：无序不重复数组
-  - **Where** ：校验某个元素是否已存在。
-  - **How** ：`SADD` 增加 不同的 `set` + 相同的 `member` ，返回1则说明不存在；否则说明存在。
-  - **Why** ：`set` 中的 `member` 具有唯一性；写入 `member` 时，如 `member` 不存在，则返回 `(integer) 1` ；否则返回 `(integer) 0`
-
-### 9.3. `MySQL`
-
-该部分仅涉及相关数据库的操作和使用，有关`mysql`的安装及配置，见上文中`docker mysql`，此章节不再赘述
-
-#### 9.3.1. 常规操作
-
-##### 9.3.1.1. 权限
-
-下文命令/操作，均以以下配置为环境
-
-```config
-mysql -h 127.0.0.1 -uroot -p
-root
-```
-
-```bash
-# 切换到mysql数据库
-use mysql;
-# 查询当前用户权限信息
-SELECT Host,User,Select_priv,Insert_priv,Update_priv,Delete_priv,Create_priv FROM user;
-# 修改密码
-SET password for root@localhost = password('123');  
-```
-
-###### 遇到 `caching-sha2-password` 问题
-
-错误描述信息: `MySQL said: Authentication plugin 'caching_sha2_password' cannot be loaded: dlopen(/usr/local/lib/plugin/caching_sha2_password.so, 2): image not found`
-
-```bash
-# 查看用户的加密方式
-SELECT Host,User,authentication_string,plugin FROM user;
-# 查看用户密码的过期信息
-SELECT password_expired,password_last_changed,password_lifetime  FROM user;
-# 结果中plugin为 caching_sha2_password
-# 更新用户密码
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
-# 再次查看plugin信息，已经变成 mysql_native_password
-
-# 此时可以通过局域网进行连接
-```
-
-##### 9.3.1.2. 数据导出
-
-#### 9.3.2. 锁机制
-
-> **`COPY FROM`** [『浅入浅出』MySQL 和 InnoDB](https://draveness.me/mysql-innodb)
-
-### 9.4. `Mongo`
-
-#### 9.4.1. `MongoDB`
-
-##### 9.4.1.1. ObjectId Generator
-
-> **`COPY FROM`** [Generating Globally Unique Identifiers for Use with MongoDB](https://www.mongodb.com/blog/post/generating-globally-unique-identifiers-for-use-with-mongodb)
-
-##### 9.4.1.2. `oplog`
-
-> **`COPY FROM`** [Replica Set Oplog](https://docs.mongodb.com/manual/core/replica-set-oplog/)
->
-> The oplog (operations log) is a special capped collection that keeps a rolling record of all operations that modify the data stored in your databases.
-
-- 在 `/etc/mongodb.conf`配置
-
-> [MongoDB: replSet can't get local.system.replset config from self or any seed “server is not running with --replSet”](https://stackoverflow.com/questions/31926795/mongodb-replset-cant-get-local-system-replset-config-from-self-or-any-seed-se)
->
-> [Administration > Configuration and Maintenance > Run-time Database Configuration](https://docs.mongodb.com/manual/administration/configuration/#replication-and-sharding-configuration)
-
-```bash
-sudo vim /etc/mongodb.conf
-
-# 编辑文件
-replication:
-   replSetName: rs0
-processManagement:
-   fork: true
-
-# 重启 mongod
-su
-ps -ef | grep mongod
-kill <pid>
-# 使用配置文件启动
-/usr/bin/mongod --config /etc/mongod.conf &
-```
-
-- `mongod` 启动出现错误
-
-> [MongoDB:Too many open files](https://blog.csdn.net/cug_heshun2013/article/details/50916597)
-
-```bash
-# 查看 mongo 日志
-tail -f /var/log/mongodb/mongod.log
-# 查看配置文件中信息
-storage:
-  dbPath: /var/lib/mongodb
-  journal:
-    enabled: true
-# 修复 mongo ， dbpath即为上文件中对应信息
-mongod --repair --dbpath=/var/lib/mongodb
-# 删除 锁定文件
-rm /var/lib/mongodb/mongod.lock
-# 重新分配权限
-sudo chown -R mongodb:mongodb /var/lib/mongodb/
-```
-
-#### 9.4.2. `Mongoose`
-
-##### 9.4.2.1. `Schema`
-
-- 数组数据结构
-
-> **`COPY FROM`** [Mongoose >> Populate](https://mongoosejs.com/docs/populate.html)
->
-> **`COPY FROM`** [Mongoose - using Populate on an array of ObjectId](https://stackoverflow.com/questions/10568281/mongoose-using-populate-on-an-array-of-objectid)
-
-```JavaScript
-const { Schema } = require('mongoose');
-const demo = new Schema({
-  key1: { type: 'ObjectId', ref: 'Key1' },
-  key2: [{ type: 'ObjectId', ref: 'Key2' }],
-  key3: String,
-  key4: [{ type: String }],
-})
-```
-
-##### 9.4.2.2. `find`
-
-- 查询结果的构造及解析
-
-> **`COPY FROM`** [Add a new property to Mongoose Document after fetch [duplicate]](https://stackoverflow.com/questions/31534534/add-a-new-property-to-mongoose-document-after-fetch)
-
-##### 9.4.2.3. `Aggregate`
-
-- 聚合查询中时间匹配查询
-
-> **`COPY FROM`** [Mongo: dates in match aggregate query seem to be ignored](https://stackoverflow.com/questions/15024383/mongo-dates-in-match-aggregate-query-seem-to-be-ignored)
->
-> **`COPY FROM`** [Aggregate $match with ISODate](https://github.com/Automattic/mongoose/issues/1599)
-
-```JavaScript
-Model.aggregate([{ $match: { createdAt: { $gte: new Date(start) , $lte: new Date(end) } } }]);
-```
-
-- 聚合查询中`_id`匹配查询
-
-```JavaScript
-const mongoose = require('mongoose');
-const { ObjectId } = mongoose.Types;
-// type:string - id
-Model.aggregate([{ $match: { _id: new Object(id) } }]);
-```
-
-#### 9.4.3. `MongoDB-to-ElasticSearch`
-
-`MongoDB` 数据同步到 `ElasticSearch` 的方式
-
-> **参考** [5 ways to synchronize data from MongoDb to ElasticSearch](https://www.linkedin.com/pulse/5-way-sync-data-from-mongodb-es-kai-hao)
-
-| 技术                            | 覆盖版本 | 维护情况             | 实现及使用方式            | 设计模式 | 同步方式  | 补偿机制         | 存在问题                                                  |
-| ------------------------------- | -------- | -------------------- | ------------------------- | -------- | --------- | ---------------- | --------------------------------------------------------- |
-| [Mongoosastic][]                | x.x      | 2018-10-16,800stars  | Node Module » Hook + HTTP | 高耦合   | Hook增量  | -                | Model.remove 和 Model.update 数据未同步                   |
-| [transporter][]                 | 5.x      | 2018-05-14,1000stars | Go CLI Tool               | 低耦合   | 单次同步  | -                | 仅能执行一次，无法自动完成同步                            |
-| [elasticsearch-river-mongodb][] | 1.x      | 2016-03-22           | Java，ES plugin           | 低耦合   | 增量      | -                | 官方已关闭river方式                                       |
-| [Jdbc input plugin][]           | x.x      | 官方组件             | Logstash input filter     | 低耦合   | 增量+全量 | 追加定时全量     | 需要JDBC驱动程序支持，而`mongo没有支持良好的JDBC驱动程序` |
-| [mongo-connector][]             | 5.x      | 2018-12-06,1500stars | Python CLI Tool  » OpLog  | 低耦合   | -         | -                | 基于OpLog                                                 |
-| 基于 [mongo-oplog][] 自研       | x.x      | 2018-09-17,400stars  | Node Module » Hook + HTTP | 自定义   | Hook增量  | 自研追加定时全量 | 基于OpLog，开发成本                                       |
-| 基于 Mongoose 自研              | x.x      | -                    | Node service              | 自定义   | 增量轮询  | 自研追加定时全量 | 不利于Mongo高并发，占用mongo链接                          |
-| 基于 redis/MQ/Kafka             | x.x      | -                    | Node service              | 低耦合   | 数据流    | 自研追加定时全量 | 改造成本大，需要在前置业务端拆解功能                      |
-
-- `Mongoosastic` 数据同步说明
-
-```doc
-Auto indexing
-Mongoosastic try to auto index documents in favor of mongoose's middleware feature.
-
-Mongoosastic will auto index when document.save/Model.findOneAndUpdate/Model.insertMany/document.remove/Model.findOneAndRemove, but not include Model.remove/Model.update.
-
-And you should have new: true options when findOneAndUpdate so that mongoosastic can get new values in post hook.
-```
-
-- `Oplog` 方式说明
-
-因 `Oplog` 在一定程序上侵入 `DB` （运维）边界和权限。
-但此工具编写的目的是为了同步数据，亦是运维内部的一部分任务。
-给每个 database 指定 user 权限，确保单点工具操作拥有对应权限的数据进行同步。
-
-<!-- 引用 -->
-[mongoosastic]: https://github.com/mongoosastic/mongoosastic
-[transporter]: https://github.com/compose/transporter
-[elasticsearch-river-mongodb]: https://github.com/richardwilly98/elasticsearch-river-mongodb
-[Jdbc input plugin]: https://www.elastic.co/guide/en/logstash/current/plugins-inputs-jdbc.html
-[mongo-connector]: https://github.com/yougov/mongo-connector
-[mongo-oplog]: https://github.com/cayasso/mongo-oplog
-
-### 9.5. ElasticSearch
-
-> 见[./ElasticSearch.md](./elasticsearch)
-
-### 9.6. `Spark`
-
-### 9.7. `Hadoop`
+### 9.4. `TypeScript`
 
 ## 10. 解决方案
 
