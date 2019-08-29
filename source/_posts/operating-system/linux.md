@@ -159,22 +159,19 @@ docker start [service]
 
 ### 3.3. shadowsocks安装配置
 
-> 108.160.143.127
+#### `ss server`
+
 >
 > https://my.vultr.com/
 > 一键安装参考 https://blog.csdn.net/lihuaichen/article/details/79311785
 
 ```shell
 
-yum -y upgrade
-
-yum install python-setuptools
+yum -y install python-setuptools
 
 easy_install pip
 
 pip install shadowsocks
-
-yum upgrade
 
 vim /etc/shadowsocks.json
 
@@ -189,6 +186,21 @@ vim /etc/shadowsocks.json
 }
 
 ssserver -d restart -c /etc/shadowsocks.json  &
+```
+
+#### 使用`ss-fly`启动
+
+> https://flyzyblog.com/install-ss-ssr-bbr-in-one-command/
+
+`GitHub` 搜索 `ss-fly`
+
+搜索之后发现被和谐，打开fork的项目，随便找一个，git clone一套带走
+
+```shell
+修改配置文件：vim /etc/shadowsocks.json
+停止ss服务：ssserver -c /etc/shadowsocks.json -d stop
+启动ss服务：ssserver -c /etc/shadowsocks.json -d start
+重启ss服务：ssserver -c /etc/shadowsocks.json -d restart
 ```
 
 ## 4. Web相关

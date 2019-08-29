@@ -13,7 +13,7 @@
 - **What** ：是什么？这个技术点是什么，如何理解。
 - **Where** ：这个技术点可以应用到什么场景，引出这个技术点的问题或者错误。
 - **How** ：如何使用这个技术点？一步下一步的操作和使用。
-- **Why** ：为什么使用这个技术点解决这个问题？
+- **Why** ：为什么使用这个技术点解决这个问题？有没有其他的替代方案？
 
 ## 2. 目录
 
@@ -53,9 +53,10 @@
       - [4.2.2.1. 文件权限](#4221-文件权限)
       - [4.2.2.2. Linux下各文件夹功能](#4222-linux下各文件夹功能)
     - [4.2.3. Shell命令](#423-shell命令)
-      - [4.2.3.1. 工具命令](#4231-工具命令)
-      - [4.2.3.2. 实用命令](#4232-实用命令)
-      - [4.2.3.3. 自定义命令](#4233-自定义命令)
+      - [4.2.3.1. 参考文献](#4231-参考文献)
+      - [4.2.3.2. 工具命令](#4232-工具命令)
+      - [4.2.3.3. 实用命令](#4233-实用命令)
+      - [4.2.3.4. 自定义命令](#4234-自定义命令)
   - [4.3. `Http` 协议](#43-http-协议)
     - [4.3.1. 版本](#431-版本)
     - [4.3.2. `Headers`](#432-headers)
@@ -115,9 +116,11 @@
       - [7.5.2.3. `git commit`](#7523-git-commit)
       - [7.5.2.4. 工作区、暂存区、本地仓库、远程仓库](#7524-工作区暂存区本地仓库远程仓库)
       - [7.5.2.5. 分支操作](#7525-分支操作)
-      - [7.5.2.6. 自定义`Git`命令](#7526-自定义git命令)
-    - [7.5.3. `GitHub`](#753-github)
-      - [7.5.3.1. `Github` 搜索](#7531-github-搜索)
+      - [7.5.2.6. `tag`操作](#7526-tag操作)
+      - [7.5.2.7. 自定义`Git`命令](#7527-自定义git命令)
+    - [7.5.3. `Gitflow`](#753-gitflow)
+    - [7.5.4. `GitHub`](#754-github)
+      - [7.5.4.1. `Github` 搜索](#7541-github-搜索)
   - [7.6. `Maven`](#76-maven)
   - [7.7. `NPM`](#77-npm)
     - [7.7.1. `npm outdated`](#771-npm-outdated)
@@ -132,6 +135,7 @@
     - [8.1.3. `docker kafka`](#813-docker-kafka)
     - [8.1.4. `docker mysql`](#814-docker-mysql)
     - [8.1.5. `docker mongo`](#815-docker-mongo)
+    - [8.1.6. `docker redis`](#816-docker-redis)
   - [8.2. 单元测试](#82-单元测试)
     - [8.2.1. `Mocha`](#821-mocha)
     - [8.2.2. `Jest`](#822-jest)
@@ -313,7 +317,11 @@ chmod a+x filename
 
 #### 4.2.3. Shell命令
 
-##### 4.2.3.1. 工具命令
+##### 4.2.3.1. 参考文献
+
+> [每天一个linux命令](https://www.cnblogs.com/peida/archive/2012/12/05/2803591.html)
+
+##### 4.2.3.2. 工具命令
 
 - `axel`
   - 说明：
@@ -330,15 +338,18 @@ chmod a+x filename
     > **`COPY FROM`** [Linux命令大全 » 网络管理 » axel](http://man.linuxde.net/axel)
 
 - `free`
-- `ln`
+- `ln` » `link`
 
 链接文件，创建快捷方式
 
 ```bash
+# 创建软连接，等同于windows快捷方式
 ln -s [源文件路径] [目标路径]
 ```
 
-- `ls`
+- `ls` » `list`
+
+查看目录信息，文件列表、文件权限、创建时间等
 
 > **`COPY FROM`** [MAC OS X 命令终端的颜色显示](https://blog.csdn.net/wxqee/article/details/49406597)
 
@@ -346,7 +357,7 @@ ln -s [源文件路径] [目标路径]
 - `top`
 - `tree`
 
-##### 4.2.3.2. 实用命令
+##### 4.2.3.3. 实用命令
 
 能解决某个/某些问题的一个/组命令
 
@@ -360,7 +371,7 @@ ps -ef | grep redis
 ls -l /proc/xxx/cwd
 ```
 
-##### 4.2.3.3. 自定义命令
+##### 4.2.3.4. 自定义命令
 
 - `Mac`自定义`shell`命令
 
@@ -381,6 +392,13 @@ source ~/.bash_profile
 
 # 查询en0网卡的IP地址
 alias ipget="ipconfig getifaddr en0"
+# git 相关简写命令
+alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gcs="git checkout staging"
+alias gcm="git checkout master"
+alias gaa="git add ."
+alias gps="git push"
+alias gpl="git pull"
 ```
 
 - `zsh`
@@ -496,6 +514,8 @@ ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
 
 ##### 5.4.1.1. ObjectId Generator
 
+`ObjectId`的生成策略
+
 > **`COPY FROM`** [Generating Globally Unique Identifiers for Use with MongoDB](https://www.mongodb.com/blog/post/generating-globally-unique-identifiers-for-use-with-mongodb)
 
 ##### 5.4.1.2. `oplog`
@@ -574,6 +594,22 @@ const demo = new Schema({
 > **`COPY FROM`** [Add a new property to Mongoose Document after fetch [duplicate]](https://stackoverflow.com/questions/31534534/add-a-new-property-to-mongoose-document-after-fetch)
 
 ##### 5.4.2.3. `Aggregate`
+
+> **`COPY FROM`** [mongodb高级聚合查询](https://www.cnblogs.com/zhoujie/p/mongo1.html)
+
+- 与`MySQL`聚合类比
+
+| SQL      | mongodb          |
+| -------- | ---------------- |
+| where    | $match           |
+| group by | $group           |
+| having   | $match           |
+| select   | $project         |
+| order by | $sort            |
+| limit    | $limit           |
+| sum()    | $sum             |
+| count()  | $sum             |
+| join     | $lookup  (>v3.2) |
 
 - 聚合查询中时间匹配查询
 
@@ -705,6 +741,14 @@ Semantic Versioning Specification. 语义版本规范
 > **`COPY FROM`** [Git打标签与版本控制规范](https://www.cnblogs.com/walls/p/9077958.html)
 >
 > **`COPY FROM`** [semver/semver](https://github.com/semver/semver)
+>
+> 版本格式：主版本号.次版本号.修订号，版本号递增规则如下：
+>
+> - 主版本号：当你做了不兼容的 API 修改
+> - 次版本号：当你做了向下兼容的功能性新增
+> - 修订号：当你做了向下兼容的问题修正
+>
+> 先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。
 
 #### 7.5.2. `Git`
 
@@ -801,7 +845,28 @@ git marge <name>
 git branch -d <name>
 ```
 
-##### 7.5.2.6. 自定义`Git`命令
+##### 7.5.2.6. `tag`操作
+
+```git
+# 新增tag
+git tag -a 0.0.1 -m 'tag message'
+
+# 删除本地tag
+git tag -d 0.0.1
+# 删除线上tag
+git push origin :0.0.1
+
+# 查看tags列表
+git tag
+
+# 推送本地某个tag到线上
+git push origin 0.0.1
+# 推送本地所有tags到线上
+git push --tags
+git push origin --tags
+```
+
+##### 7.5.2.7. 自定义`Git`命令
 
 - 自定义配置
 
@@ -841,9 +906,13 @@ git merge dev
 git push
 ```
 
-#### 7.5.3. `GitHub`
+#### 7.5.3. `Gitflow`
 
-##### 7.5.3.1. `Github` 搜索
+关于开发、生产环境和部署分支的管理
+
+#### 7.5.4. `GitHub`
+
+##### 7.5.4.1. `Github` 搜索
 
 Github 基于 ElasticSearch ，所以支持 ES 的 [Elasticsearch Reference » Search APIs » URI Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html)
 
@@ -1176,7 +1245,7 @@ db.getMongo().setSlaveOk()
 
 本地，非`docker`环境可使用 `mongodb://localhost:27017` 访问主节点，使用 `mongodb://localhost:27018` 访问复制节点
 
-#### `docker redis`
+#### 8.1.6. `docker redis`
 
 ```bash
 docker run --name redis -p 6379:6379 -v ~/code/Tools/redis/data:/data  -d redis redis-server --appendonly yes
