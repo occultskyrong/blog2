@@ -111,13 +111,14 @@
   - [7.5. 版本管理](#75-版本管理)
     - [7.5.1. `SemVer`](#751-semver)
     - [7.5.2. `Git`](#752-git)
-      - [7.5.2.1. 常用命令](#7521-常用命令)
-      - [7.5.2.2. 不常用命令](#7522-不常用命令)
-      - [7.5.2.3. `git commit`](#7523-git-commit)
-      - [7.5.2.4. 工作区、暂存区、本地仓库、远程仓库](#7524-工作区暂存区本地仓库远程仓库)
-      - [7.5.2.5. 分支操作](#7525-分支操作)
-      - [7.5.2.6. `tag`操作](#7526-tag操作)
-      - [7.5.2.7. 自定义`Git`命令](#7527-自定义git命令)
+      - [7.5.2.1. `.gitignore`](#7521-gitignore)
+      - [7.5.2.2. 常用命令](#7522-常用命令)
+      - [7.5.2.3. 不常用命令](#7523-不常用命令)
+      - [7.5.2.4. `git commit`](#7524-git-commit)
+      - [7.5.2.5. 工作区、暂存区、本地仓库、远程仓库](#7525-工作区暂存区本地仓库远程仓库)
+      - [7.5.2.6. 分支操作](#7526-分支操作)
+      - [7.5.2.7. `tag`操作](#7527-tag操作)
+      - [7.5.2.8. 自定义`Git`命令](#7528-自定义git命令)
     - [7.5.3. `Gitflow`](#753-gitflow)
     - [7.5.4. `GitHub`](#754-github)
       - [7.5.4.1. `Github` 搜索](#7541-github-搜索)
@@ -158,7 +159,8 @@
     - [9.3.3. `Modules`](#933-modules)
     - [9.3.4. 生产问题](#934-生产问题)
       - [9.3.4.1. 内存泄漏](#9341-内存泄漏)
-      - [9.3.4.2. 文件编码问题](#9342-文件编码问题)
+      - [9.3.4.2. 内存管理](#9342-内存管理)
+      - [9.3.4.3. 文件编码问题](#9343-文件编码问题)
   - [9.4. `TypeScript`](#94-typescript)
 - [10. 解决方案](#10-解决方案)
   - [10.1. 电商系统](#101-电商系统)
@@ -338,6 +340,7 @@ chmod a+x filename
     > **`COPY FROM`** [Linux命令大全 » 网络管理 » axel](http://man.linuxde.net/axel)
 
 - `free`
+
 - `ln` » `link`
 
 链接文件，创建快捷方式
@@ -354,8 +357,47 @@ ln -s [源文件路径] [目标路径]
 > **`COPY FROM`** [MAC OS X 命令终端的颜色显示](https://blog.csdn.net/wxqee/article/details/49406597)
 
 - `lsof`
+
+- `sg3_utils`
+
+包含发送SCSI命令的设备工具包。
+
+- `sg_vpd`
+
+查看硬盘转速。
+
+```bash
+# 下载页下载源码包
+http://sg.danny.cz/sg/sg3_utils.html#__RefHeading___Toc611_3724309425
+# 下载源码包
+wget http://sg.danny.cz/sg/p/sg3_utils-1.44.tgz
+# 解压缩文件
+tar -zxvf sg3_utils-1.44.tgz
+# 安装
+./configure
+make
+make install
+# 查看硬盘转速
+sg_vpd --all /dev/sda | grep "Nominal rotation rate"
+```
+
+- `tar`
+
+tar是用来建立，还原备份文件的工具程序，它可以加入，解开备份文件内的文件。
+
 - `top`
 - `tree`
+
+- `zip`和`unzip`
+
+压缩/解压缩文件/文件夹。
+
+```bash
+# 打包/home/html目录下所有文件
+zip -q -r html.zip /home/html
+# 解压缩文件
+unzip html.zip
+```
 
 ##### 4.2.3.3. 实用命令
 
@@ -754,27 +796,42 @@ Semantic Versioning Specification. 语义版本规范
 
 > **`COPY FROM`**[Git教程 - By 廖雪峰](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
-##### 7.5.2.1. 常用命令
+##### 7.5.2.1. `.gitignore`
+
+`git`忽略文件或文件夹。
+
+```conf
+*          # 忽略全部
+
+!/ch01/    # 不忽略的文件夹
+!/ch02/
+
+!*.c       # 不忽略的文件
+!*.h
+!*.cpp
+!*.md
+!*.txt
+```
+
+##### 7.5.2.2. 常用命令
 
 ```bash
-
 # 查询缓存区状态
 git status
 # 添加文件到缓存区
 git add .
 ```
 
-##### 7.5.2.2. 不常用命令
+##### 7.5.2.3. 不常用命令
 
 ```bash
-
 # 查看提交日志
 git log --pretty=oneline
 # 查看命令历史
 git reflog
 ```
 
-##### 7.5.2.3. `git commit`
+##### 7.5.2.4. `git commit`
 
 > **`COPY FROM`** [git commit 规范指南](https://segmentfault.com/a/1190000009048911)
 
@@ -788,7 +845,7 @@ commitizen init cz-conventional-changelog --save --save-exact
 
 ```
 
-##### 7.5.2.4. 工作区、暂存区、本地仓库、远程仓库
+##### 7.5.2.5. 工作区、暂存区、本地仓库、远程仓库
 
 > **`COPY FROM`** [工作区和暂存区 - 廖雪峰的官方网站](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013745374151782eb658c5a5ca454eaa451661275886c6000)
 
@@ -823,7 +880,7 @@ Untracked files:
 - 使用 `git commit` 即将暂存区所有内容提交到当前分支的本地仓库
 - 使用 `git push` 即将本地仓库中变动内容推送到远程仓库中
 
-##### 7.5.2.5. 分支操作
+##### 7.5.2.6. 分支操作
 
 ```bash
 # 查看分支
@@ -845,7 +902,7 @@ git marge <name>
 git branch -d <name>
 ```
 
-##### 7.5.2.6. `tag`操作
+##### 7.5.2.7. `tag`操作
 
 ```git
 # 新增tag
@@ -866,7 +923,7 @@ git push --tags
 git push origin --tags
 ```
 
-##### 7.5.2.7. 自定义`Git`命令
+##### 7.5.2.8. 自定义`Git`命令
 
 - 自定义配置
 
@@ -1415,7 +1472,30 @@ function add(...args) {
 
 ##### 9.3.4.1. 内存泄漏
 
-##### 9.3.4.2. 文件编码问题
+##### 9.3.4.2. 内存管理
+
+> [NodeJS中被忽略的内存](http://huang-jerryc.com/2016/04/14/NodeJS%E4%B8%AD%E8%A2%AB%E5%BF%BD%E7%95%A5%E7%9A%84%E5%86%85%E5%AD%98/)
+>
+> Node中并不像其他后端语言中，对内存的使用没有多少限制。
+> 在Node中使用内存，只能使用到系统的一部分内存，64位系统下约为1.4GB，32位系统下约为0.7GB。
+> 这归咎于Node使用了本来运行在浏览器的V8引擎。
+>
+> [Node.js内存控制](https://blog.csdn.net/u011958281/article/details/79279911)
+
+```bash
+# 查看NodeJS进程内存
+process.memoryUsage()
+
+{
+  rss: 19652608, // 进程常驻内存
+  heapTotal: 9682944, // NodeJS申请到的堆内存
+  heapUsed: 5379056, // NodeJS当前使用的量
+  external: 16902 // 外部的内存
+}
+
+```
+
+##### 9.3.4.3. 文件编码问题
 
 **Where** ：因为`Node`的编码统一使用`UTF-8`，所以极少有可能遇到编码的问题，但是也非绝对，当上传、下载文件时，文件内部的编码一般不是`UTF-8`，导致`Node`文件流生成的`Buffer`对象时产生乱码。
 
